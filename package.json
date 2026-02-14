@@ -1,0 +1,32 @@
+{
+  "name": "sltourisum",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
+    "@supabase/supabase-js": "^2.95.3",
+    "emailjs-com": "^3.2.0",
+    "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
+    "mongoose": "^9.1.6",
+    "next": "^16.1.5",
+    "react": "18.3.1",
+    "react-country-region-selector": "^4.0.6",
+    "react-dom": "18.3.1",
+    "react-icons": "^5.5.0",
+    "react-phone-number-input": "^3.4.14",
+    "react-select": "^5.10.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.4",
+    "tailwindcss": "^4"
+  }
+}

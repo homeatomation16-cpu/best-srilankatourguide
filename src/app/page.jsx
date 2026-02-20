@@ -36,7 +36,7 @@ import VehiclesPage from "./vehicles/page";
         <Destinations />
         <FeaturedTours />
         <SeasonalTours />
-        <Drivers />
+        {/*<Drivers />*/}
         <VehiclesPage />
         <WhyUs />
         <OneDayTours />

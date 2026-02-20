@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // ======= Data (static, outside component) =======
 const TOURS_DATA = [
   {
+    id: "sigiriya-dambulla-day-tour",
     title: "Sigiriya & Dambulla Day Tour",
     from: "Habarana (Sigiriya)",
     duration: "Full Day",
@@ -18,6 +19,7 @@ const TOURS_DATA = [
     highlights: ["UNESCO Site", "Ancient Fortress", "Cave Paintings"],
   },
   {
+    id: "ella-scenic-tour",
     title: "Ella Scenic Tour",
     from: "Ella",
     duration: "Full Day",
@@ -29,6 +31,7 @@ const TOURS_DATA = [
     highlights: ["Nine Arch Bridge", "Tea Factory", "Ravana Falls"],
   },
   {
+    id: "yala-safari-adventure",
     title: "Yala Safari Adventure",
     from: "Thissamaharama (Yala)",
     duration: "Full Day",
@@ -40,39 +43,43 @@ const TOURS_DATA = [
     highlights: ["Leopard Spotting", "Wildlife", "4x4 Jeep Safari"],
   },
   {
+    id: "galle-fort-beach-tour",
     title: "Galle Fort & Beach Tour",
     from: "Galle",
     duration: "Full Day",
     durationHours: 8,
     price: 75,
     image: "https://images.unsplash.com/photo-1588598198321-9735fd52455b",
-    desc: "Visit Galle Fort & explore the beach.",
+    desc: "Visit Galle Fort & relax on the beach.",
     category: "Beach",
     highlights: ["Dutch Fort", "Lighthouse", "Beach Time"],
   },
   {
+    id: "colombo-city-highlights",
     title: "Colombo City Highlights",
     from: "Colombo",
     duration: "Half Day",
     durationHours: 6,
     price: 60,
     image: "https://images.unsplash.com/photo-1586500036706-41963de24d8b",
-    desc: "Explore Colombo city landmarks.",
+    desc: "Explore Colombo city landmarks and cultural sites.",
     category: "Cultural",
     highlights: ["Gangaramaya Temple", "Independence Square", "Galle Face"],
   },
   {
+    id: "kandy-cultural-tour",
     title: "Kandy Cultural Tour",
     from: "Kandy",
     duration: "Full Day",
     durationHours: 8,
     price: 70,
     image: "https://images.unsplash.com/photo-1588072432836-e10032774350",
-    desc: "Temple of the Tooth & cultural show.",
+    desc: "Temple of the Tooth & traditional cultural show.",
     category: "Cultural",
     highlights: ["Sacred Tooth Relic", "Kandyan Dance", "Botanical Gardens"],
   },
   {
+    id: "mirissa-whale-watching",
     title: "Mirissa Whale Watching",
     from: "Mirissa",
     duration: "Half Day",
@@ -84,50 +91,55 @@ const TOURS_DATA = [
     highlights: ["Blue Whales", "Dolphins", "Ocean Adventure"],
   },
   {
+    id: "anuradhapura-heritage-tour",
     title: "Anuradhapura Heritage Tour",
     from: "Anuradhapura",
     duration: "Full Day",
     durationHours: 8,
     price: 75,
     image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
-    desc: "Ancient stupas & sacred city tour.",
+    desc: "Explore ancient stupas & sacred heritage city.",
     category: "Cultural",
     highlights: ["Sacred Bo Tree", "Ancient Stupas", "UNESCO Site"],
   },
   {
+    id: "arugambay-beach-escape",
     title: "Arugambay Beach Escape",
     from: "Arugambay",
     duration: "Full Day",
     durationHours: 8,
     price: 70,
     image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6",
-    desc: "Surfing & beach relaxation.",
+    desc: "Surfing & beach relaxation experience.",
     category: "Beach",
     highlights: ["Surfing Lessons", "Beach Yoga", "Sunset Views"],
   },
   {
+    id: "hikkaduwa-coral-tour",
     title: "Hikkaduwa Coral Tour",
     from: "Hikkaduwa",
     duration: "Full Day",
     durationHours: 6,
     price: 65,
     image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
-    desc: "Snorkeling & coral viewing.",
+    desc: "Snorkeling & coral reef exploration.",
     category: "Beach",
     highlights: ["Coral Reefs", "Snorkeling", "Turtle Watching"],
   },
   {
+    id: "nuwara-eliya-tea-country",
     title: "Nuwara Eliya Tea Country",
     from: "Nuwara Eliya",
     duration: "Full Day",
     durationHours: 8,
     price: 80,
     image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7",
-    desc: "Tea plantations & waterfalls.",
+    desc: "Tea plantations, waterfalls & cool climate views.",
     category: "Nature",
     highlights: ["Tea Factory Tour", "Gregory Lake", "Horton Plains"],
   },
   {
+    id: "pasikuda-beach-day",
     title: "Pasikuda Beach Day",
     from: "Pasikuda",
     duration: "Full Day",
@@ -139,17 +151,19 @@ const TOURS_DATA = [
     highlights: ["Pristine Beach", "Water Sports", "Calm Waters"],
   },
   {
+    id: "trincomalee-coastal-tour",
     title: "Trincomalee Coastal Tour",
     from: "Trincomalee",
     duration: "Full Day",
     durationHours: 8,
     price: 75,
     image: "https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9",
-    desc: "Nilaveli beach & Koneswaram temple.",
+    desc: "Nilaveli beach & Koneswaram temple visit.",
     category: "Beach",
     highlights: ["Koneswaram Temple", "Nilaveli Beach", "Hot Springs"],
   },
   {
+    id: "udawalawa-safari",
     title: "Udawalawa Safari",
     from: "Udawalawa",
     duration: "Half Day",
@@ -161,6 +175,7 @@ const TOURS_DATA = [
     highlights: ["Wild Elephants", "Bird Watching", "Jeep Safari"],
   },
   {
+    id: "negombo-lagoon-tour",
     title: "Negombo Lagoon Tour",
     from: "Negombo",
     duration: "Half Day",
@@ -172,48 +187,76 @@ const TOURS_DATA = [
     highlights: ["Boat Safari", "Fresh Seafood", "Mangrove Tour"],
   },
   {
+    id: "airport-transfer-tour",
     title: "Airport Transfer Tour",
     from: "Airport (CMB)",
     duration: "Flexible",
     durationHours: 0,
     price: 50,
     image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df",
-    desc: "Comfortable airport pickup & tours.",
+    desc: "Comfortable airport pickup & optional tour arrangements.",
     category: "Transfer",
+    overview: `
+Bandaranaike International Airport (CMB), located in Katunayake, is Sri Lanka’s main international gateway, approximately 35 kilometers (22 miles) north of Colombo. Named after Sirimavo Bandaranaike, the world’s first female Prime Minister, the airport plays a key role in tourism and economic development.
+
+Our Airport Transfer Service provides safe, comfortable, and reliable pick-up and drop-off between the airport and your selected destination across Sri Lanka.
+
+Important Information:
+• The listed prices are for pick-up and drop-off only.
+• Additional sightseeing stops along the way can be arranged upon request.
+• Payments can be made in foreign currency or Sri Lankan Rupees (LKR). Foreign currency payments will be calculated based on the exchange rate on the due date.
+• Special discounts available: 5% for Cars and 3% for Vans.
+• Please mention your starting and ending destinations when booking.
+`,
     highlights: ["Meet & Greet", "Comfortable Vehicle", "Tour Options"],
   },
   {
+    id: "polonnaruwa-ancient-city",
     title: "Polonnaruwa Ancient City",
     from: "Polonnaruwa",
     duration: "Full Day",
     durationHours: 8,
     price: 65,
     image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
-    desc: "Ancient stupas & sacred city tour.",
+    desc: "Explore ancient ruins & Gal Vihara statues.",
     category: "Cultural",
     highlights: ["Ancient Ruins", "Gal Vihara", "UNESCO Site"],
   },
   {
+    id: "jaffna-cultural-tour",
     title: "Jaffna Cultural Tour",
     from: "Jaffna",
     duration: "Full Day",
     durationHours: 8,
     price: 70,
     image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
-    desc: "Northern heritage & island culture.",
+    desc: "Northern heritage & island culture exploration.",
     category: "Cultural",
     highlights: ["Nallur Temple", "Jaffna Fort", "Island Culture"],
   },
   {
+    id: "dambulla-cave-temples",
     title: "Dambulla Cave Temples",
     from: "Dambulla",
     duration: "Half Day",
     durationHours: 4,
     price: 55,
     image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
-    desc: "Golden temple cave complex.",
+    desc: "Visit the Golden Temple cave complex.",
     category: "Cultural",
     highlights: ["Cave Paintings", "Buddha Statues", "UNESCO Site"],
+  },
+  {
+    id: "thissamaharama-village-tour",
+    title: "Thissamaharama Village Tour",
+    from: "Thissamaharama",
+    duration: "Half Day",
+    durationHours: 4,
+    price: 50,
+    image: "https://images.unsplash.com/photo-1586500036706-41963de24d8b",
+    desc: "Explore local village life, lakes & rural culture.",
+    category: "Cultural",
+    highlights: ["Village Experience", "Local Farming", "Lake Views"],
   },
 ];
 
@@ -271,7 +314,10 @@ const staggerContainer = {
   show: { transition: { staggerChildren: 0.06, delayChildren: 0.06 } },
 };
 
-const imageHover = { scale: 1.08, transition: { duration: 0.6, ease: "easeOut" } };
+const imageHover = {
+  scale: 1.08,
+  transition: { duration: 0.6, ease: "easeOut" },
+};
 const cardHover = { y: -8, scale: 1.03, transition: { duration: 0.35 } };
 
 export default function ExcursionsPage() {
@@ -530,7 +576,9 @@ export default function ExcursionsPage() {
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             Browse by Location
           </h2>
-          <p className="text-gray-600">Click a location to see available tours</p>
+          <p className="text-gray-600">
+            Click a location to see available tours
+          </p>
         </div>
 
         {/* GRID with stagger + reveal */}
@@ -596,7 +644,8 @@ export default function ExcursionsPage() {
                 : "All Tours"}
             </h2>
             <p className="text-gray-600 mt-1">
-              {filteredTours.length} {filteredTours.length === 1 ? "tour" : "tours"} available
+              {filteredTours.length}{" "}
+              {filteredTours.length === 1 ? "tour" : "tours"} available
             </p>
           </div>
 
@@ -628,7 +677,11 @@ export default function ExcursionsPage() {
                 className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.6 }} className="absolute inset-0">
+                  <motion.div
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.6 }}
+                    className="absolute inset-0"
+                  >
                     <Image
                       src={tour.image}
                       fill
@@ -698,8 +751,12 @@ export default function ExcursionsPage() {
         ) : (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-700 mb-2">No tours found</h3>
-            <p className="text-gray-500 mb-6">Try adjusting your filters or search criteria</p>
+            <h3 className="text-2xl font-bold text-gray-700 mb-2">
+              No tours found
+            </h3>
+            <p className="text-gray-500 mb-6">
+              Try adjusting your filters or search criteria
+            </p>
             <button
               onClick={clearFilters}
               className="px-6 py-3 bg-orange-500 text-white font-bold rounded-2xl hover:bg-orange-600 transition-all"
@@ -741,15 +798,27 @@ export default function ExcursionsPage() {
               <div className="p-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   {compareList.map((tour, idx) => (
-                    <motion.div key={idx} variants={fadeUp} className="border-2 border-purple-200 rounded-2xl p-4">
+                    <motion.div
+                      key={idx}
+                      variants={fadeUp}
+                      className="border-2 border-purple-200 rounded-2xl p-4"
+                    >
                       <div className="relative h-48 rounded-xl overflow-hidden mb-4">
-                        <Image src={tour.image} fill alt={tour.title} className="object-cover" unoptimized />
+                        <Image
+                          src={tour.image}
+                          fill
+                          alt={tour.title}
+                          className="object-cover"
+                          unoptimized
+                        />
                       </div>
                       <h3 className="font-bold text-lg mb-2">{tour.title}</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Price:</span>
-                          <span className="font-bold text-purple-600">${tour.price}</span>
+                          <span className="font-bold text-purple-600">
+                            ${tour.price}
+                          </span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Duration:</span>
@@ -761,7 +830,9 @@ export default function ExcursionsPage() {
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Location:</span>
-                          <span className="font-semibold text-xs">{tour.from}</span>
+                          <span className="font-semibold text-xs">
+                            {tour.from}
+                          </span>
                         </div>
                       </div>
                       <button
@@ -775,7 +846,9 @@ export default function ExcursionsPage() {
                 </div>
 
                 {compareList.length < 3 && (
-                  <p className="text-center text-gray-500 mt-6">You can compare up to 3 tours. Add more from the tour list.</p>
+                  <p className="text-center text-gray-500 mt-6">
+                    You can compare up to 3 tours. Add more from the tour list.
+                  </p>
                 )}
               </div>
             </motion.div>

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { tours } from "@/data/tours";
+import { tours } from "../../data/tours";
 
 export default function Carousel() {
   const ref = useRef(null);

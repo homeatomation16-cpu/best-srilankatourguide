@@ -9,9 +9,21 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
+  // Scroll behavior (hide/reveal + background change)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+
+      setScrolled(currentY > 40);
+      setHidden(currentY > lastY && currentY > 120);
+
+      lastY = currentY;
+    };
+
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -22,19 +34,22 @@ export default function Navbar() {
     { label: "Destinations", href: "/destinations" },
     { label: "Excursions", href: "/excursions" },
     { label: "Offers", href: "#offers" },
-    { label: "Vehiles", href: "/vehicles" },
+    { label: "Vehicles", href: "/vehicles" },
     { label: "Tailor Made", href: "/tailor-made" },
     { label: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: hidden ? -120 : 0 }}
+      transition={{ duration: 0.35 }}
       className={`fixed top-0 w-full z-50 transition-all duration-500
-      ${
-        scrolled
-          ? "bg-white/70 backdrop-blur-xl text-neutral-900 shadow-md"
-          : "bg-transparent"
-      }`}
+        ${
+          scrolled
+            ? "bg-black/40 backdrop-blur-xl shadow-lg border-b border-white/10"
+            : "bg-transparent"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -42,45 +57,58 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.png"
-            alt="Sri Lanka Tours Driver"
-            width={70}
-            height={70}
+            alt="Sri Lanka Tours"
+            width={60}
+            height={60}
             priority
-            className="rounded-full"
+            className="rounded-full border border-amber-400/40"
           />
 
           <div className="hidden sm:block leading-tight">
-            <p className="font-bold text-amber-400 text-xl">
+            <p className="font-bold text-amber-400 text-xs tracking-wide">
               Sri Lanka Tours
             </p>
-            <p className="text-xs text-gray-800 tracking-wide">
-              Luxury Travel Experience
+            <p className="text-xs text-white/70 tracking-widest uppercase">
+              Luxury Experience
             </p>
           </div>
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 xl:gap-14">
 
           {menuItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="relative font-medium text-gray-800 hover:text-orange-500 transition"
+              className="group relative text-white text-sm font-light tracking-wide"
             >
               {item.label}
 
-              {/* underline hover */}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-orange-500 transition-all group-hover:w-full"></span>
+              {/* gold underline */}
+              <span className="absolute left-0 -bottom-2 w-0 h-px bg-linear-to-r from-amber-400 to-yellow-200 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
 
-          {/* CTA */}
+          {/* LUXURY CTA */}
           <a
             href="tel:+94769300334"
-            className="bg-linear-to-r from-orange-500 to-amber-400 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition"
+            className="
+              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
+              text-black
+              px-8 py-3
+              rounded-full
+              font-semibold
+              tracking-wide
+              shadow-lg
+              hover:scale-105
+              hover:shadow-amber-400/40
+              transition
+              flex items-center gap-2
+            "
           >
-            Call Now <PhoneIcon className="inline ml-2" size={16} />
+            Call
+            <PhoneIcon size={16} />
           </a>
 
         </div>
@@ -88,7 +116,7 @@ export default function Navbar() {
         {/* MOBILE TOGGLE */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden"
+          className="md:hidden text-white"
           aria-label="Toggle Menu"
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -99,19 +127,32 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white/50 backdrop-blur-xl shadow-xl"
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.25 }}
+            className="
+              md:hidden
+              bg-black/80
+              backdrop-blur-2xl
+              border-t border-amber-400/20
+            "
           >
-            <div className="px-6 py-8 space-y-6">
+            <div className="px-6 py-10 space-y-8 text-center">
 
               {menuItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-lg font-medium text-gray-800 hover:text-orange-500"
+                  className="
+                    block
+                    text-lg
+                    text-white/90
+                    tracking-wide
+                    hover:text-amber-400
+                    transition
+                  "
                 >
                   {item.label}
                 </Link>
@@ -119,15 +160,22 @@ export default function Navbar() {
 
               <a
                 href="tel:+94769300334"
-                className="block bg-orange-500 text-white text-center py-3 rounded-full font-semibold"
+                className="
+                  inline-block
+                  bg-linear-to-r from-amber-500 to-yellow-300
+                  text-black
+                  px-8 py-3
+                  rounded-full
+                  font-semibold
+                "
               >
-                Call Now
+                Call
               </a>
 
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

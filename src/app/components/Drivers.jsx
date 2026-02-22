@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Users, Star, CheckCircle } from "lucide-react";
-import { drivers } from "@/data/drivers";
+import { drivers } from "../../data/drivers";
 
 export default function Drivers() {
   return (

@@ -8,7 +8,6 @@ export const drivers = [
     experience: "12+ Years",
     location: "Colombo, Sri Lanka",
 
-    /* ✅ languages as objects */
     languages: [
       { name: "English", flag: "🇬🇧" },
       { name: "Sinhala", flag: "🇱🇰" },
@@ -39,7 +38,6 @@ export const drivers = [
 
     bio: "Licensed professional tour guide with over 12 years of experience showing travelers the beauty of Sri Lanka.",
 
-    /* ✅ ALWAYS have image */
     image: "/driver.jpg",
     profileImage: "/driver-profile.jpg",
     coverImage: "/sri-lanka-cover.jpg",
@@ -51,7 +49,6 @@ export const drivers = [
       "/gallery4.jpg"
     ],
 
-    /* ⭐ Reviews */
     reviews: [
       {
         id: 1,
@@ -71,7 +68,6 @@ export const drivers = [
       }
     ],
 
-    /* ⭐ Tours */
     tours: [
       {
         id: 1,

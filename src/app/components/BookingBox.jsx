@@ -7,29 +7,34 @@ import "react-phone-number-input/style.css";
 
 export default function BookingBox({ vehicle }) {
 
-  const [form,setForm] = useState({
-    name:"",
-    email:"",
-    phone:"",
-    date:"",
-    time:"",
-    notes:""
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    time: "",
+    notes: ""
   });
 
-  const handle=(k,v)=>setForm({...form,[k]:v});
+  const [status, setStatus] = useState("idle");
 
-  const send=async()=>{
+  const handle = (k, v) => setForm({ ...form, [k]: v });
 
-    if(!form.name || !form.email){
-      return alert("Fill required fields");
+  const send = async () => {
+
+    if (!form.name || !form.email) {
+      alert("Please fill required fields.");
+      return;
     }
 
-    const params={
+    setStatus("sending");
+
+    const params = {
       ...form,
       vehicle: vehicle?.name
     };
 
-    try{
+    try {
 
       await emailjs.send(
         "service_9fflwkc",
@@ -38,8 +43,7 @@ export default function BookingBox({ vehicle }) {
         "_PDrKKzoflFb6YJUT"
       );
 
-      const msg=`
-Booking Request
+      const msg = `Booking Request
 
 Name: ${form.name}
 Vehicle: ${vehicle?.name}
@@ -53,95 +57,123 @@ Notes: ${form.notes}
         `https://wa.me/94769300334?text=${encodeURIComponent(msg)}`
       );
 
-      alert("Booking Sent ✅");
+      setStatus("sent");
 
-    }catch(err){
-      alert("Error ❌");
+    } catch (err) {
       console.log(err);
+      setStatus("error");
     }
   };
 
+  const inputClass =
+    "w-full bg-white/[0.07] border border-amber-700/30 text-white placeholder-white/20 px-3.5 py-2.5 text-sm outline-none focus:border-amber-600/60 focus:bg-white/10 transition-colors";
+
+  const labelClass =
+    "block text-[10px] font-medium tracking-[0.15em] uppercase text-amber-400/80 mb-1.5";
+
   return (
-    <div className="bg-gray-100 p-6 rounded-lg max-w-md">
+    <div className="bg-stone-900 p-8 text-white max-w-md">
+
+      {/* HEADER */}
+      <div className="mb-6">
+        <p className="text-xs uppercase tracking-[0.2em] text-white/50">
+          Reserve Vehicle
+        </p>
+        <h3 className="font-serif text-2xl mt-2">
+          {vehicle?.name}
+        </h3>
+      </div>
 
       {/* NAME */}
-      <label>Name</label>
-      <input
-        className="input"
-        onChange={e=>handle("name",e.target.value)}
-      />
+      <div>
+        <label className={labelClass}>Full Name *</label>
+        <input
+          className={inputClass}
+          placeholder="Your name"
+          value={form.name}
+          onChange={e => handle("name", e.target.value)}
+        />
+      </div>
 
       {/* EMAIL */}
-      <label>Email</label>
-      <input
-        className="input"
-        onChange={e=>handle("email",e.target.value)}
-      />
+      <div className="mt-4">
+        <label className={labelClass}>Email Address *</label>
+        <input
+          type="email"
+          className={inputClass}
+          placeholder="you@email.com"
+          value={form.email}
+          onChange={e => handle("email", e.target.value)}
+        />
+      </div>
 
       {/* PHONE */}
-      <label>Whatsapp Number</label>
-      <PhoneInput
-        defaultCountry="LK"
-        value={form.phone}
-        onChange={(v)=>handle("phone",v)}
-        className="phone"
-      />
+      <div className="mt-4">
+        <label className={labelClass}>WhatsApp Number</label>
+        <div className="[&_.PhoneInput]:flex [&_.PhoneInput]:items-center [&_.PhoneInput]:bg-white/[0.07] [&_.PhoneInput]:border [&_.PhoneInput]:border-amber-700/30 [&_.PhoneInput]:px-3.5 [&_.PhoneInput]:py-2.5 [&_.PhoneInput]:gap-2 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-none [&_.PhoneInputInput]:text-white [&_.PhoneInputInput]:text-sm [&_.PhoneInputInput]:outline-none [&_.PhoneInputInput]:w-full [&_.PhoneInputInput]:placeholder-white/20 [&_.PhoneInputCountrySelect]:bg-stone-900 [&_.PhoneInputCountrySelect]:text-amber-400 [&_.PhoneInputCountrySelect]:border-none [&_.PhoneInputCountrySelect]:text-sm">
+          <PhoneInput
+            defaultCountry="LK"
+            value={form.phone}
+            onChange={(v) => handle("phone", v || "")}
+          />
+        </div>
+      </div>
 
-      {/* DATE */}
-      <label>Date</label>
-      <input
-        type="date"
-        className="input"
-        onChange={e=>handle("date",e.target.value)}
-      />
-
-      {/* TIME */}
-      <label>Time</label>
-      <input
-        type="time"
-        className="input"
-        onChange={e=>handle("time",e.target.value)}
-      />
+      {/* DATE + TIME */}
+      <div className="grid grid-cols-2 gap-3 mt-4">
+        <div>
+          <label className={labelClass}>Date</label>
+          <input
+            type="date"
+            className={inputClass + " scheme-dark"}
+            value={form.date}
+            onChange={e => handle("date", e.target.value)}
+          />
+        </div>
+        <div>
+          <label className={labelClass}>Time</label>
+          <input
+            type="time"
+            className={inputClass + " scheme-dark"}
+            value={form.time}
+            onChange={e => handle("time", e.target.value)}
+          />
+        </div>
+      </div>
 
       {/* NOTES */}
-      <label>Special Notes</label>
-      <textarea
-        rows="3"
-        className="input"
-        onChange={e=>handle("notes",e.target.value)}
-      />
+      <div className="mt-4">
+        <label className={labelClass}>Special Requests</label>
+        <textarea
+          rows={3}
+          className={inputClass + " resize-none"}
+          placeholder="Extra stops, luggage info..."
+          value={form.notes}
+          onChange={e => handle("notes", e.target.value)}
+        />
+      </div>
 
+      {/* BUTTON */}
       <button
         onClick={send}
-        className="w-full bg-orange-500 text-white py-3 mt-4 rounded"
+        disabled={status === "sending" || status === "sent"}
+        className={`w-full py-3.5 mt-6 text-xs font-medium tracking-[0.12em] uppercase transition-all
+          ${status === "sent"
+            ? "bg-emerald-700"
+            : "bg-orange-700 hover:bg-orange-800 hover:-translate-y-px"}
+          disabled:opacity-60 disabled:cursor-not-allowed`}
       >
-        Book Now
+        {status === "idle" && "Book Now"}
+        {status === "sending" && "Sending..."}
+        {status === "sent" && "✓ Request Sent"}
+        {status === "error" && "Try Again"}
       </button>
 
-      <style jsx>{`
-        label{
-          display:block;
-          margin-top:12px;
-          margin-bottom:4px;
-          font-size:14px;
-        }
-
-        .input{
-          width:100%;
-          border:1px solid #ccc;
-          padding:10px;
-          border-radius:4px;
-          background:white;
-        }
-
-        /* Phone input height fix */
-        .phone{
-          background:white;
-          border:1px solid #ccc;
-          padding:6px 10px;
-          border-radius:4px;
-        }
-      `}</style>
+      {status === "sent" && (
+        <p className="text-center text-xs text-white/40 mt-3">
+          WhatsApp opened — please send to confirm.
+        </p>
+      )}
 
     </div>
   );

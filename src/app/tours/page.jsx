@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { TOURS } from "@/data/tours";
+import { TOURS } from "../../data/tours";
 
 export default function ToursPage() {
   return (

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Users } from "lucide-react";
-import { vehicles } from "@/data/vehicles";
+import { vehicles } from "../../data/vehicles";
 
 export default function VehiclesPage() {
   return (

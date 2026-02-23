@@ -35,7 +35,7 @@ export default function Navbar() {
     { label: "Excursions", href: "/excursions" },
     { label: "Offers", href: "#offers" },
     { label: "Vehicles", href: "/vehicles" },
-    { label: "Tailor Made", href: "/tailor-made" },
+    { label: "Tailor Made", href: "/tailor-made-tours" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -81,7 +81,7 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="group relative text-white text-sm font-light tracking-wide"
+              className="group relative text-black text-xs font-semibold tracking-wide"
             >
               {item.label}
 

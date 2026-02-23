@@ -3,43 +3,56 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { TOUR_GALLERIES } from "../../data/gallery";
 
 export default function Gallery() {
   const sliderRef = useRef(null);
 
-  const images = [
-    "https://images.unsplash.com/photo-1540202404-d0c7fe46a087?w=1200&q=90",
-    "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90",
-    "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=1200&q=90",
-    "https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?w=1200&q=90",
-  ];
+  // 🔥 Combine ALL gallery arrays into one single array
+  const images = Object.values(TOUR_GALLERIES).flat();
 
-  // AUTO SCROLL
   useEffect(() => {
     const el = sliderRef.current;
     if (!el) return;
 
     let scroll = 0;
+    let animationFrame;
 
-    const auto = setInterval(() => {
+    const animate = () => {
       scroll += 0.5;
+
       if (scroll >= el.scrollWidth / 2) {
         scroll = 0;
       }
+
       el.scrollLeft = scroll;
-    }, 16);
+      animationFrame = requestAnimationFrame(animate);
+    };
 
-    // Pause on hover
-    el.addEventListener("mouseenter", () => clearInterval(auto));
+    const start = () => {
+      animationFrame = requestAnimationFrame(animate);
+    };
 
-    return () => clearInterval(auto);
+    const stop = () => {
+      cancelAnimationFrame(animationFrame);
+    };
+
+    start();
+
+    el.addEventListener("mouseenter", stop);
+    el.addEventListener("mouseleave", start);
+
+    return () => {
+      stop();
+      el.removeEventListener("mouseenter", stop);
+      el.removeEventListener("mouseleave", start);
+    };
   }, []);
 
   return (
-    <section className="py-28 bg-linear-to-b from-white to-gray-50">
-
+    <section className="py-28 bg-linear-to-brom-white to-gray-50">
       <div className="max-w-7xl mx-auto px-6">
-
+        
         {/* HEADER */}
         <div className="text-center mb-16">
           <p className="text-orange-500 tracking-widest mb-3">
@@ -54,18 +67,14 @@ export default function Gallery() {
         {/* SLIDER */}
         <div
           ref={sliderRef}
-          className="
-            overflow-x-hidden
-            whitespace-nowrap
-            relative
-          "
+          className="overflow-x-hidden whitespace-nowrap relative"
         >
           <div className="inline-flex gap-6">
 
-            {[...images, ...images].map((img, i) => (
+            {[...images, ...images].map((item, i) => (
               <Link
                 key={i}
-                href="https://www.instagram.com/srilankatoursdriver/"
+                href="#"
                 target="_blank"
                 className="
                   relative
@@ -78,8 +87,8 @@ export default function Gallery() {
                 "
               >
                 <Image
-                  src={img}
-                  alt=""
+                  src={item.src}
+                  alt={item.alt}
                   fill
                   className="
                     object-cover
@@ -89,27 +98,31 @@ export default function Gallery() {
                 />
 
                 {/* Luxury Overlay */}
-                <div className="
-                  absolute inset-0
-                  bg-linear-to-t
-                  from-black/40
-                  via-black/10
-                  to-transparent
-                "/>
+                <div
+                  className="
+                    absolute inset-0
+                    bg-linear-to-t
+                    from-black/40
+                    via-black/10
+                    to-transparent
+                  "
+                />
 
-                {/* Label */}
-                <div className="
-                  absolute bottom-5 left-5
-                  bg-white/20 backdrop-blur-md
-                  text-white
-                  px-4 py-2
-                  rounded-full
-                  text-sm
-                  opacity-0
-                  group-hover:opacity-100
-                  transition
-                ">
-                  View Journey
+                {/* Caption */}
+                <div
+                  className="
+                    absolute bottom-5 left-5
+                    bg-white/20 backdrop-blur-md
+                    text-white
+                    px-4 py-2
+                    rounded-full
+                    text-sm
+                    opacity-0
+                    group-hover:opacity-100
+                    transition
+                  "
+                >
+                  {item.caption}
                 </div>
 
               </Link>
@@ -117,9 +130,7 @@ export default function Gallery() {
 
           </div>
         </div>
-
       </div>
-
     </section>
   );
 }

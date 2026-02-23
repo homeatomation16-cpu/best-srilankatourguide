@@ -1,4 +1,203 @@
 export const TOURS = [
+  {
+  id: "galle-one-day-tour",
+  title: "Galle One Day Tour",
+  image: "/tours/galle-one-day-tour.jpg", // make sure image exists in public/Tours
+  price: 80,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Day Tour",
+
+  overview:
+    "Visit Sri Lanka and book Galle One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Hire a personal driver with private car for your trip and enjoy a comfortable and memorable journey to Galle and the southern coast.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      title: "Day 01 - Colombo / Negombo to Galle",
+      description:
+        "Enjoy a scenic drive along the southern coastal road with multiple sightseeing stops.",
+      activities: [
+        "Bentota Beach Stop",
+        "Madu River Boat Safari (Optional)",
+        "Turtle Hatchery Visit",
+        "Galle Dutch Fort",
+        "Galle Lighthouse",
+        "Shopping & Café Time",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+  ],
+
+},
+{
+  id: "kandy-one-day-tour",
+  title: "Kandy One Day Tour",
+  image: "/tours/kandy-one-day-tour.jpg", // make sure image exists
+  price: 130,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Day Tour",
+
+  overview:
+    "Visit Sri Lanka and book Kandy One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Hire a personal driver with private car for your trip and enjoy a comfortable and memorable journey to the cultural capital of Sri Lanka — Kandy.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      title: "Day 01 - Colombo / Negombo to Kandy",
+      description:
+        "Enjoy a scenic drive to Kandy with cultural and nature experiences along the way.",
+      activities: [
+        "Pinnawala Elephant Orphanage (Optional)",
+        "Spice Garden Visit in Mawanella",
+        "Tea Factory & Tea Tasting",
+        "Kandy Lake Walk",
+        "Temple of the Sacred Tooth Relic",
+        "Cultural Dance Show (Optional)",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+  ],
+},
+{
+  id: "sigiriya-one-day-tour",
+  title: "Sigiriya One Day Tour",
+  image: "/tours/sigiriya-one-day-tour.jpg", // make sure file exists
+  price: 150,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Day Tour",
+
+  overview:
+    "Visit Sri Lanka and book Sigiriya One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Enjoy a private and comfortable journey to explore the UNESCO World Heritage Site of Sigiriya Rock Fortress and nearby cultural attractions.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      title: "Day 01 - Colombo / Negombo to Sigiriya",
+      description:
+        "Experience Sri Lanka’s cultural triangle with an early morning departure to Sigiriya.",
+      activities: [
+        "Sigiriya Rock Fortress Climb",
+        "Sigiriya Museum Visit",
+        "Dambulla Cave Temple",
+        "Village Tour Experience (Optional)",
+        "Spice Garden Visit",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+  ],
+},
+{
+  id: "udawalawa-safari-one-day-tour",
+  title: "Udawalawa Safari One Day Tour",
+  image: "/tours/udawalawa-safari-one-day-tour.jpg", // make sure file exists
+  price: 150,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Safari Tour",
+
+  overview:
+    "Visit Sri Lanka and book Udawalawa Safari One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Enjoy an unforgettable wildlife safari experience at Udawalawa National Park, famous for its large herds of wild elephants and diverse wildlife.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Safari Jeep Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      title: "Day 01 - Colombo / Negombo to Udawalawa",
+      description:
+        "Early morning departure for a thrilling safari adventure at Udawalawa National Park.",
+      activities: [
+        "Udawalawa National Park Safari (3-4 Hours)",
+        "Elephant Transit Home Visit (Optional)",
+        "Wildlife Photography",
+        "Scenic Drive Through Southern Countryside",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+  ],
+},
+
   // =====================================================
   // 05 DAYS
   // =====================================================

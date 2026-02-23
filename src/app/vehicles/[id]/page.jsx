@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { vehicles } from "@/data/vehicles";
-import Carousel from "@/app/components/Carousel";
-import VehicleSlider from "@/app/components/VehicleSlider";
-import BookingBox from "@/app/components/BookingBox";
+import { vehicles } from "../../../data/vehicles";
+import Carousel from "../../components/Carousel";
+import VehicleSlider from "../../components/VehicleSlider";
+import BookingBox from "../../components/BookingBox";
 
 export default async function VehiclePage({ params }) {
 

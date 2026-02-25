@@ -3,47 +3,42 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-// ======= Data (static, outside component) =======
 import { TOURS } from "../../data/tours";
+
 const CATEGORIES = ["All", "Cultural", "Beach", "Safari", "Nature", "Transfer"];
 
-/* ======= FRAMER MOTION VARIANTS ======= */
+/* ================= FRAMER VARIANTS ================= */
 const fadeUp = {
-  hidden: { opacity: 0, y: 28, scale: 0.98, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
-const staggerContainer = {
+const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.06 } },
+  show: { transition: { staggerChildren: 0.08 } },
 };
-
-const imageHover = {
-  scale: 1.08,
-  transition: { duration: 0.6, ease: "easeOut" },
-};
-const cardHover = { y: -8, scale: 1.03, transition: { duration: 0.35 } };
 
 export default function ExcursionsPage() {
   const [locationFilter, setLocationFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
-  const [priceRange, setPriceRange] = useState([0, 150]);
-  const [durationFilter, setDurationFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("price-low");
   const [compareList, setCompareList] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
 
-  // ======= filtered & sorted tours (clone TOURS_DATA to avoid mutation) =======
+  /* ================= LOCATIONS (dynamic) ================= */
+  const LOCATIONS = useMemo(() => {
+    const unique = [...new Set(TOURS.map((t) => t.from).filter(Boolean))];
+    return ["All", ...unique];
+  }, []);
+
+  /* ================= FILTERING ================= */
   const filteredTours = useMemo(() => {
-    let result = [...TOURS]; // clone
+    let result = [...TOURS];
 
     if (locationFilter !== "All") {
       result = result.filter((t) => t.from === locationFilter);
@@ -53,515 +48,261 @@ export default function ExcursionsPage() {
       result = result.filter((t) => t.category === categoryFilter);
     }
 
-    result = result.filter(
-      (t) => t.price >= priceRange[0] && t.price <= priceRange[1],
-    );
-
-    if (durationFilter !== "All") {
-      result = result.filter((t) => t.duration === durationFilter);
-    }
-
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
         (t) =>
-          t.title.toLowerCase().includes(q) ||
-          t.desc.toLowerCase().includes(q) ||
-          t.from.toLowerCase().includes(q),
+          (t.title || "").toLowerCase().includes(q) ||
+          (t.desc || "").toLowerCase().includes(q) ||
+          (t.from || "").toLowerCase().includes(q)
       );
     }
 
     switch (sortBy) {
       case "price-low":
-        result.sort((a, b) => a.price - b.price);
+        result.sort((a, b) => (a.price || 0) - (b.price || 0));
         break;
       case "price-high":
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case "duration":
-        result.sort((a, b) => b.durationHours - a.durationHours);
+        result.sort((a, b) => (b.price || 0) - (a.price || 0));
         break;
       case "name":
-        result.sort((a, b) => a.title.localeCompare(b.title));
+        result.sort((a, b) =>
+          (a.title || "").localeCompare(b.title || "")
+        );
         break;
     }
 
     return result;
-  }, [
-    locationFilter,
-    categoryFilter,
-    priceRange,
-    durationFilter,
-    searchQuery,
-    sortBy,
-  ]);
+  }, [locationFilter, categoryFilter, searchQuery, sortBy]);
 
-  // ======= compare helpers =======
-  const isInCompare = (tour) => compareList.some((t) => t.title === tour.title);
-
+  /* ================= COMPARE ================= */
   const toggleCompare = (tour) => {
     setCompareList((prev) => {
-      const exists = prev.some((t) => t.title === tour.title);
-      if (exists) return prev.filter((t) => t.title !== tour.title);
-      if (prev.length >= 3) return prev; // limit
+      const exists = prev.find((t) => t.id === tour.id);
+      if (exists) return prev.filter((t) => t.id !== tour.id);
+      if (prev.length >= 3) return prev;
       return [...prev, tour];
     });
   };
 
-  const clearFilters = () => {
-    setLocationFilter("All");
-    setCategoryFilter("All");
-    setPriceRange([0, 150]);
-    setDurationFilter("All");
-    setSearchQuery("");
-  };
-
-  // ======= safe slider handlers (ensure min <= max) =======
-  const setMinPrice = (val) => {
-    const min = Math.min(Number(val), priceRange[1]);
-    setPriceRange([min, priceRange[1]]);
-  };
-  const setMaxPrice = (val) => {
-    const max = Math.max(Number(val), priceRange[0]);
-    setPriceRange([priceRange[0], max]);
-  };
+  const isInCompare = (tour) =>
+    compareList.some((t) => t.id === tour.id);
 
   return (
-    <div className="flex h-full flex-col relative mt-16 bg-linear-to-br from-amber-50 via-orange-50 to-rose-50">
-      {/* Header */}
-      <header className="bg-linear-to-r from-amber-600 via-orange-600 to-rose-600 text-white">
-        <div className="w-full max-w-7xl mx-auto px-6 py-16 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          </div>
+    <div className="mt-16 bg-linear-to-br from-amber-50 via-orange-50 to-rose-50 min-h-screen">
 
-          <div className="relative z-10">
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="text-5xl md:text-6xl font-black tracking-tight mb-4"
-            >
-              Discover Sri Lanka
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: 0.12 }}
-              className="text-xl md:text-2xl font-light opacity-90"
-            >
-              Unforgettable excursions across the pearl of the Indian Ocean
-            </motion.p>
-          </div>
-        </div>
+      {/* ================= HEADER ================= */}
+      <header className="bg-linear-to-r from-orange-600 to-rose-600 text-white py-16 text-center">
+        <h1 className="text-5xl font-black mb-3">
+          Discover Sri Lanka
+        </h1>
+        <p className="text-xl opacity-90">
+          Explore unforgettable day tours & excursions
+        </p>
       </header>
 
-      {/* Search & Filters Bar */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg border-b border-orange-100">
-        <div className="w-full max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
-            {/* Search */}
-            <div className="flex-1 w-full lg:w-auto">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search tours..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-2xl border-2 border-orange-200 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all"
-                />
-                <svg
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-orange-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-            </div>
+      {/* ================= FILTER BAR ================= */}
+      <div className="sticky top-0 z-40 bg-white shadow-md p-4">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-4">
 
-            {/* Category Filter */}
-            <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide w-full lg:w-auto">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setCategoryFilter(cat)}
-                  className={`px-5 py-2.5 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ${
-                    categoryFilter === cat
-                      ? "bg-linear-to-r from-orange-500 to-rose-500 text-white shadow-lg scale-105"
-                      : "bg-white text-gray-700 border-2 border-orange-200 hover:border-orange-400 hover:scale-105"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+          {/* Search */}
+          <input
+            type="text"
+            placeholder="Search tours..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1 border-2 border-orange-200 rounded-xl px-4 py-2 focus:outline-none focus:border-orange-500"
+          />
 
-            {/* Sort */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 rounded-2xl border-2 border-orange-200 focus:border-orange-500 focus:outline-none bg-white font-medium"
-            >
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="duration">Duration</option>
-              <option value="name">Name A-Z</option>
-            </select>
-          </div>
-
-          {/* Advanced Filters */}
-          <div className="mt-4 grid md:grid-cols-3 gap-4">
-            {/* Duration Filter */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Duration
-              </label>
-              <div className="flex gap-2">
-                {["All", "Half Day", "Full Day", "Flexible"].map((dur) => (
-                  <button
-                    key={dur}
-                    onClick={() => setDurationFilter(dur)}
-                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                      durationFilter === dur
-                        ? "bg-orange-500 text-white"
-                        : "bg-orange-50 text-gray-700 hover:bg-orange-100"
-                    }`}
-                  >
-                    {dur}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Price Range */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Price Range: ${priceRange[0]} - ${priceRange[1]}
-              </label>
-              <div className="flex gap-3 items-center">
-                <input
-                  type="range"
-                  min="0"
-                  max="150"
-                  value={priceRange[0]}
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  className="flex-1 accent-orange-500"
-                />
-                <input
-                  type="range"
-                  min="0"
-                  max="150"
-                  value={priceRange[1]}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  className="flex-1 accent-orange-500"
-                />
-              </div>
-            </div>
-
-            {/* Clear Filters */}
-            <div className="flex items-end">
+          {/* Category */}
+          <div className="flex gap-2 overflow-x-auto">
+            {CATEGORIES.map((cat) => (
               <button
-                onClick={clearFilters}
-                className="w-full px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition-all"
+                key={cat}
+                onClick={() => setCategoryFilter(cat)}
+                className={`px-4 py-2 rounded-full font-semibold ${
+                  categoryFilter === cat
+                    ? "bg-orange-500 text-white"
+                    : "bg-orange-100 text-gray-700"
+                }`}
               >
-                Clear All Filters
+                {cat}
               </button>
-            </div>
+            ))}
           </div>
+
+          {/* Sort */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="border-2 border-orange-200 rounded-xl px-4 py-2"
+          >
+            <option value="price-low">Price Low → High</option>
+            <option value="price-high">Price High → Low</option>
+            <option value="name">Name A → Z</option>
+          </select>
         </div>
       </div>
 
-      {/* Location Grid */}
-      <section className="w-full max-w-6xl mx-auto px-6 py-12">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Browse by Location
-          </h2>
-          <p className="text-gray-600">
-            Click a location to see available tours
-          </p>
-        </div>
+      {/* ================= LOCATIONS ================= */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold mb-6">
+          Browse by Location
+        </h2>
 
-        {/* GRID with stagger + reveal */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-        >
-          {TOURS.map((loc, idx) => (
-            <motion.div
-              key={loc.name}
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              onClick={() => setLocationFilter(loc.name)}
-              className="group relative w-full h-72 rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500"
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {LOCATIONS.map((loc) => (
+            <div
+              key={loc}
+              onClick={() => setLocationFilter(loc)}
+              className={`cursor-pointer p-6 rounded-2xl shadow-lg text-center font-bold transition ${
+                locationFilter === loc
+                  ? "bg-orange-500 text-white"
+                  : "bg-white hover:bg-orange-100"
+              }`}
             >
-              {/* Image wrapper with zoom on hover */}
-              <motion.div whileHover={imageHover} className="absolute inset-0">
-                <Image
-                  src={loc.img}
-                  fill
-                  alt={loc.name}
-                  className="object-cover"
-                  unoptimized
-                />
-              </motion.div>
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent transition-all duration-500" />
-
-              {/* Text */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <p className="text-xs font-bold tracking-widest opacity-75 mb-1">
-                  EXPLORE
-                </p>
-
-                <h3 className="text-2xl font-black mb-2">{loc.name}</h3>
-
-                <div className="h-1 w-16 bg-orange-400 rounded-full group-hover:w-full transition-all duration-500" />
-              </div>
-
-              {/* Active Badge */}
-              {locationFilter === loc.name && (
-                <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                  Active
-                </div>
-              )}
-            </motion.div>
+              {loc}
+            </div>
           ))}
-        </motion.div>
+        </div>
       </section>
 
-      {/* Tours Grid */}
-      <section className="w-full mx-auto px-6 pb-16 max-w-7xl">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800">
-              {locationFilter !== "All"
-                ? `Tours from ${locationFilter}`
-                : "All Tours"}
-            </h2>
-            <p className="text-gray-600 mt-1">
-              {filteredTours.length}{" "}
-              {filteredTours.length === 1 ? "tour" : "tours"} available
-            </p>
-          </div>
+      {/* ================= TOURS GRID ================= */}
+      <section className="max-w-7xl mx-auto px-6 pb-16">
+
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">
+            {filteredTours.length} Tours Found
+          </h2>
 
           {compareList.length > 0 && (
-            <motion.button
-              onClick={() => setShowCompare((s) => !s)}
-              whileHover={{ scale: 1.03 }}
-              className="px-6 py-3 bg-linear-to-r from-purple-500 to-indigo-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all transform"
+            <button
+              onClick={() => setShowCompare(true)}
+              className="bg-purple-500 text-white px-6 py-3 rounded-xl font-bold"
             >
               Compare ({compareList.length})
-            </motion.button>
+            </button>
           )}
         </div>
 
-        {/* Tour Cards */}
         {filteredTours.length > 0 ? (
           <motion.div
-            variants={staggerContainer}
+            variants={stagger}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
+            animate="show"
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredTours.map((tour, idx) => (
+            {filteredTours.map((tour) => (
               <motion.div
-                key={tour.title}
+                key={tour.id}
                 variants={fadeUp}
-                whileHover={cardHover}
-                className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500"
+                className="bg-white rounded-3xl overflow-hidden shadow-xl"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <motion.div
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={tour.image}
-                      fill
-                      alt={tour.title}
-                      className="object-cover"
-                      unoptimized
-                    />
-                  </motion.div>
-
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-4 py-1.5 rounded-full text-sm font-bold text-orange-600 shadow-lg">
-                    {tour.category}
-                  </div>
-
-                  <button
-                    onClick={() => toggleCompare(tour)}
-                    className={`absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all ${isInCompare(tour) ? "bg-purple-500 text-white shadow-lg" : "bg-white/95 text-gray-600 hover:bg-purple-500 hover:text-white"}`}
-                  >
-                    {isInCompare(tour) ? "✓" : "+"}
-                  </button>
-
-                  <div className="absolute bottom-4 right-4 bg-linear-to-r from-orange-500 to-rose-500 text-white px-4 py-2 rounded-2xl font-black text-xl shadow-xl">
-                    ${tour.price}
-                  </div>
+                <div className="relative h-60">
+                  <Image
+                    src={tour.image || "/gallery/gallery1.jpg"}
+                    fill
+                    alt={tour.title}
+                    className="object-cover"
+                  />
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-black text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">
+                  <h3 className="text-xl font-bold mb-2">
                     {tour.title}
                   </h3>
 
-                  <p className="text-gray-600 mb-4 line-clamp-2">{tour.desc}</p>
+                  <p className="text-gray-600 mb-3">
+                    {tour.desc || "No description available."}
+                  </p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tour.highlights.slice(0, 2).map((h, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-orange-50 text-orange-700 px-3 py-1 rounded-full font-medium"
-                      >
-                        {h}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-4 pb-4 border-b border-gray-100">
-                    <div className="flex items-center gap-1">
-                      <span className="text-orange-500">📍</span>
-                      <span className="font-medium">{tour.from}</span>
+                  {/* Highlights Safe */}
+                  {tour.highlights?.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {tour.highlights.slice(0, 2).map((h, i) => (
+                        <span
+                          key={i}
+                          className="text-xs bg-orange-50 text-orange-700 px-3 py-1 rounded-full"
+                        >
+                          {h}
+                        </span>
+                      ))}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <span className="text-orange-500">⏱</span>
-                      <span className="font-medium">{tour.duration}</span>
-                    </div>
-                  </div>
+                  )}
 
-                  <motion.a
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={`https://wa.me/94769300334?text=${encodeURIComponent(`Hi I want to book ${tour.title}`)}`}
-                    className="block w-full bg-linear-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white text-center py-3.5 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all transform"
-                  >
-                    Book This Tour
-                  </motion.a>
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-orange-600">
+                      ${tour.price}
+                    </span>
+
+                    <button
+                      onClick={() => toggleCompare(tour)}
+                      className={`px-4 py-2 rounded-lg font-semibold ${
+                        isInCompare(tour)
+                          ? "bg-purple-500 text-white"
+                          : "bg-gray-100"
+                      }`}
+                    >
+                      {isInCompare(tour) ? "Added" : "Compare"}
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         ) : (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-700 mb-2">
-              No tours found
-            </h3>
-            <p className="text-gray-500 mb-6">
-              Try adjusting your filters or search criteria
-            </p>
-            <button
-              onClick={clearFilters}
-              className="px-6 py-3 bg-orange-500 text-white font-bold rounded-2xl hover:bg-orange-600 transition-all"
-            >
-              Clear All Filters
-            </button>
+          <div className="text-center py-16 text-gray-500">
+            No tours found.
           </div>
         )}
       </section>
 
-      {/* Comparison Modal (AnimatePresence) */}
+      {/* ================= COMPARE MODAL ================= */}
       <AnimatePresence>
-        {showCompare && compareList.length > 0 && (
+        {showCompare && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6"
+            className="fixed inset-0 bg-black/60 flex items-center justify-center p-6 z-50"
             onClick={() => setShowCompare(false)}
           >
             <motion.div
-              initial={{ y: 30, scale: 0.98 }}
-              animate={{ y: 0, scale: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.28 }}
-              className="bg-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              exit={{ y: 20 }}
+              className="bg-white rounded-3xl max-w-4xl w-full p-6"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="sticky top-0 bg-linear-to-r from-purple-500 to-indigo-500 text-white p-6 rounded-t-3xl flex items-center justify-between">
-                <h2 className="text-2xl font-black">Compare Tours</h2>
-                <button
-                  onClick={() => setShowCompare(false)}
-                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all"
-                >
-                  ✕
-                </button>
+              <h2 className="text-2xl font-bold mb-6">
+                Compare Tours
+              </h2>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {compareList.map((tour) => (
+                  <div
+                    key={tour.id}
+                    className="border rounded-2xl p-4"
+                  >
+                    <h3 className="font-bold mb-2">
+                      {tour.title}
+                    </h3>
+                    <p className="text-sm mb-2">
+                      ${tour.price}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {tour.duration}
+                    </p>
+                  </div>
+                ))}
               </div>
 
-              <div className="p-6">
-                <div className="grid md:grid-cols-3 gap-6">
-                  {compareList.map((tour, idx) => (
-                    <motion.div
-                      key={idx}
-                      variants={fadeUp}
-                      className="border-2 border-purple-200 rounded-2xl p-4"
-                    >
-                      <div className="relative h-48 rounded-xl overflow-hidden mb-4">
-                        <Image
-                          src={tour.image}
-                          fill
-                          alt={tour.title}
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </div>
-                      <h3 className="font-bold text-lg mb-2">{tour.title}</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Price:</span>
-                          <span className="font-bold text-purple-600">
-                            ${tour.price}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Duration:</span>
-                          <span className="font-semibold">{tour.duration}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Category:</span>
-                          <span className="font-semibold">{tour.category}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Location:</span>
-                          <span className="font-semibold text-xs">
-                            {tour.from}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => toggleCompare(tour)}
-                        className="w-full mt-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 font-semibold"
-                      >
-                        Remove
-                      </button>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {compareList.length < 3 && (
-                  <p className="text-center text-gray-500 mt-6">
-                    You can compare up to 3 tours. Add more from the tour list.
-                  </p>
-                )}
-              </div>
+              <button
+                onClick={() => setShowCompare(false)}
+                className="mt-6 px-6 py-3 bg-orange-500 text-white rounded-xl font-bold"
+              >
+                Close
+              </button>
             </motion.div>
           </motion.div>
         )}

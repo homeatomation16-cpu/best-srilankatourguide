@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { DESTINATIONS } from "../../../data/destinations";
+import PackagePrice from "../../components/PackagePrice";
+import TrustBar from "../../components/TrustBar";
 
 export function generateStaticParams() {
   return DESTINATIONS.map((item) => ({ id: item.id }));
@@ -208,9 +210,12 @@ export default async function DestinationPage({ params }) {
                 </Link>
               ))}
             </div>
+            
           </div>
         </div>
       )}
+      <PackagePrice destinations={relatedDestinations} />
+            <TrustBar />
     </div>
   );
 }

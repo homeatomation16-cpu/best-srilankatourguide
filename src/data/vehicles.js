@@ -1,10 +1,18 @@
+// ================= COMMON DATA =================
+
 const commonDriver = {
   experience: "10 Years",
   languages: [
-    "English","Sinhala","Tamil",
-    "Chinese","Japanese","Korean",
-    "Russian","French","German"
-  ]
+    "English",
+    "Sinhala",
+    "Tamil",
+    "Chinese",
+    "Japanese",
+    "Korean",
+    "Russian",
+    "French",
+    "German",
+  ],
 };
 
 const commonOverview =
@@ -14,10 +22,15 @@ const commonPaymentPolicy = [
   "Full payment first day OR daily payment based on mileage",
   "Minimum booking: 3 days",
   "170km included per day",
-  "Extra mileage charges apply"
+  "Extra mileage charges apply",
 ];
 
+// ================= VEHICLES =================
+
 export const vehicles = [
+  // =====================================================
+  // HONDA FIT SHUTTLE
+  // =====================================================
 
   {
     id: "honda-fit",
@@ -28,109 +41,64 @@ export const vehicles = [
     fuel: "Hybrid",
     transmission: "Auto",
 
-    image:
-      "https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1200",
+    image: "/honda-fit-shuttle/honda-fit-shuttle-1.jpeg",
 
     gallery: [
-      "https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1200",
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200",
-      "https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1200"
+      "/honda-fit-shuttle/honda-fit-shuttle-1.jpeg",
+      "/honda-fit-shuttle/honda-fit-shuttle-2.jpeg",
+      "/honda-fit-shuttle/honda-fit-shuttle-3.jpeg",
+      "/honda-fit-shuttle/honda-fit-shuttle-4.jpeg",
     ],
 
     features: [
       "Air Conditioning",
       "Comfort seats",
       "Fuel efficient",
-      "Ideal for city tours"
+      "Ideal for city tours",
     ],
 
     driver: commonDriver,
     overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
+    paymentPolicy: commonPaymentPolicy,
   },
 
-  {
-    id: "toyota-kdh",
-    name: "Toyota KDH Highroof",
-    type: "Van",
-    price: "$110",
-    passengers: 10,
-    fuel: "Diesel",
-    transmission: "Manual",
-
-    image:
-      "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1200",
-
-    gallery: [
-      "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1200",
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=1200"
-    ],
-
-    features: [
-      "High roof",
-      "Large luggage space",
-      "Tour ready",
-      "Family friendly"
-    ],
-
-    driver: commonDriver,
-    overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
-  },
+  // =====================================================
+  // TOYOTA PRIUS
+  // =====================================================
 
   {
     id: "toyota-prius",
     name: "Toyota Prius",
     type: "Car",
     price: "$80",
-    maxPeople: 3,
-    minAge: 16,
-    duration: "Per Day",
-    tourType: "Private Driver Hire",
-    reviews: 0,
+    passengers: 3,
+    fuel: "Hybrid",
+    transmission: "Auto",
 
-    image:
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1200",
+    image: "/images/1-1.jpeg",
 
     gallery: [
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1200",
-      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200",
-      "https://images.unsplash.com/photo-1580274455191-1c62238fa333?q=80&w=1200"
-    ],
-
-    driver: commonDriver,
-    overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
-  },
-
-  {
-    id: "toyota-coaster",
-    name: "Toyota Coaster AC Bus",
-    type: "Bus",
-    price: "$180",
-    passengers: 25,
-    fuel: "Diesel",
-    transmission: "Manual",
-
-    image:
-      "https://images.unsplash.com/photo-1590335895229-6e75511892c8?q=80&w=1200",
-
-    gallery: [
-      "https://images.unsplash.com/photo-1590335895229-6e75511892c8?q=80&w=1200",
-      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200"
+      "/images/1-1.jpeg",
+      "/images/1-2.jpeg",
+      "/images/1-3.jpeg",
+      "/images/1-4.jpeg",
     ],
 
     features: [
-      "Full Air Conditioning",
-      "Comfortable seats",
-      "Large luggage space",
-      "Ideal for group tours"
+      "Eco friendly hybrid",
+      "Smooth driving",
+      "Air Conditioning",
+      "Comfort interior",
     ],
 
     driver: commonDriver,
     overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
+    paymentPolicy: commonPaymentPolicy,
   },
+
+  // =====================================================
+  // TOYOTA AXIO
+  // =====================================================
 
   {
     id: "toyota-axio",
@@ -141,25 +109,30 @@ export const vehicles = [
     fuel: "Hybrid",
     transmission: "Auto",
 
-    image:
-      "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1200",
+    image: "/toyota-axio/toyota-axio-1.jpeg",
 
     gallery: [
-      "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1200",
-      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?q=80&w=1200"
+      "/toyota-axio/toyota-axio-1.jpeg",
+      "/toyota-axio/toyota-axio-2.jpeg",
+      "/toyota-axio/toyota-axio-3.jpeg",
+      "/toyota-axio/toyota-axio-4.jpeg",
     ],
 
     features: [
       "Fuel efficient",
       "Smooth ride",
       "Air Conditioning",
-      "Perfect for city travel"
+      "Perfect for city travel",
     ],
 
     driver: commonDriver,
     overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
+    paymentPolicy: commonPaymentPolicy,
   },
+
+  // =====================================================
+  // HONDA GRACE
+  // =====================================================
 
   {
     id: "honda-grace",
@@ -170,25 +143,66 @@ export const vehicles = [
     fuel: "Hybrid",
     transmission: "Auto",
 
-    image:
-      "https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200",
+    image: "/honda-grace/honda-grace-1.jpeg",
 
     gallery: [
-      "https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200",
-      "https://images.unsplash.com/photo-1583267746897-2cf415887172?q=80&w=1200"
+      "/honda-grace/honda-grace-1.jpeg",
+      "/honda-grace/honda-grace-2.jpeg",
+      "/honda-grace/honda-grace-3.jpeg",
+      "/honda-grace/honda-grace-4.jpeg",
+      "/honda-grace/honda-grace-5.jpeg",
+      "/honda-grace/honda-grace-6.jpeg",
     ],
 
     features: [
       "Luxury interior",
       "Silent hybrid drive",
       "Air Conditioning",
-      "Comfort travel"
+      "Comfort travel",
     ],
 
     driver: commonDriver,
     overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
+    paymentPolicy: commonPaymentPolicy,
   },
+
+  // =====================================================
+  // TOYOTA KDH HIGHROOF VAN
+  // =====================================================
+
+  {
+    id: "toyota-kdh",
+    name: "Toyota KDH Highroof",
+    type: "Van",
+    price: "$110",
+    passengers: 10,
+    fuel: "Diesel",
+    transmission: "Manual",
+
+    image: "/toyota-kdh-highroof-van/toyota-kdh-highroof-1.jpeg",
+
+    gallery: [
+      "/toyota-kdh-highroof-van/toyota-kdh-highroof-1.jpeg",
+      "/toyota-kdh-highroof-van/toyota-kdh-highroof-2.jpeg",
+      "/toyota-kdh-highroof-van/toyota-kdh-highroof-3.jpeg",
+      "/toyota-kdh-highroof-van/toyota-kdh-highroof-4.jpeg",
+    ],
+
+    features: [
+      "High roof",
+      "Large luggage space",
+      "Tour ready",
+      "Family friendly",
+    ],
+
+    driver: commonDriver,
+    overview: commonOverview,
+    paymentPolicy: commonPaymentPolicy,
+  },
+
+  // =====================================================
+  // TOYOTA KDH FLATROOF VIP VAN
+  // =====================================================
 
   {
     id: "kdh-vip-flatroof",
@@ -199,24 +213,58 @@ export const vehicles = [
     fuel: "Diesel",
     transmission: "Manual",
 
-    image:
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=1200",
+    image: "/toyota-kdh-flatroof-vip-van/toyota-kdh-flatroof-vip-1.jpeg",
 
     gallery: [
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=1200",
-      "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1200"
+      "/toyota-kdh-flatroof-vip-van/toyota-kdh-flatroof-vip-1.jpeg",
+      "/toyota-kdh-flatroof-vip-van/toyota-kdh-flatroof-vip-2.jpeg",
+      "/toyota-kdh-flatroof-vip-van/toyota-kdh-flatroof-vip-3.jpeg",
+      "/toyota-kdh-flatroof-vip-van/toyota-kdh-flatroof-vip-4.jpeg",
     ],
 
     features: [
       "VIP seating",
       "Flat roof design",
       "Extra comfort interior",
-      "Perfect for private tours"
+      "Perfect for private tours",
     ],
 
     driver: commonDriver,
     overview: commonOverview,
-    paymentPolicy: commonPaymentPolicy
-  }
+    paymentPolicy: commonPaymentPolicy,
+  },
 
+  // =====================================================
+  // TOYOTA COASTER AC BUS
+  // =====================================================
+
+  {
+    id: "toyota-coaster",
+    name: "Toyota Coaster AC Bus",
+    type: "Bus",
+    price: "$180",
+    passengers: 25,
+    fuel: "Diesel",
+    transmission: "Manual",
+
+    image: "/toyota-coaster-ac-bus/toyota-coaster-ac-bus-1.jpeg",
+
+    gallery: [
+      "/toyota-coaster-ac-bus/toyota-coaster-ac-bus-1.jpeg",
+      "/toyota-coaster-ac-bus/toyota-coaster-ac-bus-2.jpeg",
+      "/toyota-coaster-ac-bus/toyota-coaster-ac-bus-3.jpeg",
+      "/toyota-coaster-ac-bus/toyota-coaster-ac-bus-4.jpeg",
+    ],
+
+    features: [
+      "Full Air Conditioning",
+      "Comfortable seats",
+      "Large luggage space",
+      "Ideal for group tours",
+    ],
+
+    driver: commonDriver,
+    overview: commonOverview,
+    paymentPolicy: commonPaymentPolicy,
+  },
 ];

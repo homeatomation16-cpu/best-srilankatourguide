@@ -11,7 +11,6 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
 
-  // Scroll behavior (hide/reveal + background change)
   useEffect(() => {
     let lastY = window.scrollY;
 
@@ -44,12 +43,11 @@ export default function Navbar() {
       initial={{ y: 0 }}
       animate={{ y: hidden ? -120 : 0 }}
       transition={{ duration: 0.35 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500
-        ${
-          scrolled
-            ? "bg-black/40 backdrop-blur-xl shadow-lg border-b border-white/10"
-            : "bg-transparent"
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-black/60 backdrop-blur-xl shadow-lg border-b border-white/10"
+          : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -76,25 +74,26 @@ export default function Navbar() {
 
         {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center gap-8 xl:gap-14">
-
           {menuItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="group relative text-black text-xs font-semibold tracking-wide"
+              className={`group relative text-xs font-semibold tracking-wide transition ${
+                scrolled ? "text-white" : "text-white"
+              }`}
             >
               {item.label}
 
-              {/* gold underline */}
+              {/* Gold underline */}
               <span className="absolute left-0 -bottom-2 w-0 h-px bg-linear-to-r from-amber-400 to-yellow-200 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
 
-          {/* LUXURY CTA */}
+          {/* CALL CTA */}
           <a
             href="tel:+94769300334"
             className="
-              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
+              bg-linear-to-rrom-amber-500 via-yellow-400 to-amber-500
               text-black
               px-8 py-3
               rounded-full
@@ -110,7 +109,6 @@ export default function Navbar() {
             Call
             <PhoneIcon size={16} />
           </a>
-
         </div>
 
         {/* MOBILE TOGGLE */}
@@ -131,47 +129,26 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.25 }}
-            className="
-              md:hidden
-              bg-black/80
-              backdrop-blur-2xl
-              border-t border-amber-400/20
-            "
+            className="md:hidden bg-black/90 backdrop-blur-2xl border-t border-amber-400/20"
           >
             <div className="px-6 py-10 space-y-8 text-center">
-
               {menuItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="
-                    block
-                    text-lg
-                    text-white/90
-                    tracking-wide
-                    hover:text-amber-400
-                    transition
-                  "
+                  className="block text-lg text-white/90 tracking-wide hover:text-amber-400 transition"
                 >
                   {item.label}
                 </Link>
               ))}
 
               <a
-                href="tel:+94702062697"
-                className="
-                  inline-block
-                  bg-linear-to-r from-amber-500 to-yellow-300
-                  text-black
-                  px-8 py-3
-                  rounded-full
-                  font-semibold
-                "
+                href="tel:+94769300334"
+                className="inline-block bg-linear-to-r from-amber-500 to-yellow-300 text-black px-8 py-3 rounded-full font-semibold"
               >
                 Call
               </a>
-
             </div>
           </motion.div>
         )}

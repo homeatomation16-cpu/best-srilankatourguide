@@ -13,7 +13,7 @@
 /* =========================
    TAILWIND FONT TOKENS
    ========================= */
-@theme inline {
+inline {
   --font-sans: var(--font-body);
   --font-serif: var(--font-heading);
 }
@@ -24,7 +24,7 @@
 body {
   font-family: var(--font-body), sans-serif;
 }
-@import "tailwindcss";
+
 
 /* =========================
    ROOT VARIABLES
@@ -39,7 +39,7 @@ body {
 /* =========================
    TAILWIND FONT TOKENS
    ========================= */
-@theme inline {
+ inline {
   --font-sans: var(--font-body);
   --font-serif: var(--font-heading);
 }
@@ -49,4 +49,15 @@ body {
    ========================= */
 body {
   font-family: var(--font-body), sans-serif;
+}
+.container {
+    overflow-x: scroll; /* Ensures scrolling is possible */
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+}
+
+/* For WebKit-based browsers (Chrome, Safari, Opera) */
+.container::-webkit-scrollbar {
+    display: none;
+    height: 0; /* Also useful for horizontal scrollbars */
 }

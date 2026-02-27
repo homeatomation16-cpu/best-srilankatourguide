@@ -5,6 +5,7 @@ import "./globals.css";
 import PageTransition from "./components/PageTransition";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TrustBar from "./components/TrustBar";
 
 ;
 
@@ -62,6 +63,8 @@ export default function RootLayout({ children }) {
         <PageTransition>
           {children}
         </PageTransition>
+
+        <TrustBar />
 
         {/* FOOTER */}
         <Footer />

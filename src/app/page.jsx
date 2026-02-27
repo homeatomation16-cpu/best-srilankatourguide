@@ -44,7 +44,7 @@ import VehiclesPage from "./vehicles/page";
         <SpecialOffer />
         <TailorMade />
         <Gallery />
-        <TrustBar />
+        
         <ContactCTA />
 
         

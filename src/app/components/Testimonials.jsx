@@ -87,7 +87,7 @@ export default function Testimonials() {
         {/* SLIDER */}
         <div
           ref={sliderRef}
-          className="overflow-hidden whitespace-nowrap"
+          className="overflow-hidden whitespace-nowrap py-5 -mx-5 sm:-mx-8 lg:-mx-12"
         >
           <div className="inline-flex gap-10">
 

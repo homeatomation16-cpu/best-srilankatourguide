@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TOURS } from "../../data/tours";
+import TrustBar from "../components/TrustBar";
 
 export default function ToursPage() {
   return (
@@ -73,6 +74,7 @@ export default function ToursPage() {
           </div>
         ))}
       </div>
+      
     </div>
   );
 }

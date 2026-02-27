@@ -9,57 +9,58 @@ export default function OneDayTours() {
   const oneDayTours = TOURS.filter((tour) => tour.duration === 1);
 
   return (
-    <section className="py-28 lg:py-36 px-6 bg-linear-to-b from-white to-orange-50">
+    <section className="py-16 sm:py-20 lg:py-32 px-5 sm:px-8 bg-linear-to-b from-white to-orange-50">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
-        <div className="text-center mb-20">
-          <p className="text-orange-600 text-xl mb-4 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <p className="text-orange-600 text-sm sm:text-base tracking-wider uppercase mb-3">
             Luxury Day Trips
           </p>
 
-          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
             One Day Tour Packages
           </h2>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {oneDayTours.map((tour) => (
             <div
               key={tour.id}
-              className="group relative rounded-[28px] overflow-hidden bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition hover:-translate-y-3 hover:shadow-[0_30px_70px_rgba(0,0,0,0.15)]"
+              className="group relative rounded-3xl overflow-hidden bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-2xl"
             >
               {/* IMAGE */}
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-60 sm:h-64 overflow-hidden">
                 <Image
                   src={tour.image}
                   alt={tour.title}
                   fill
-                  className="object-cover transition duration-1000 group-hover:scale-110"
+                  sizes="(max-width:768px) 100vw, 33vw"
+                  className="object-cover transition duration-700 group-hover:scale-105"
                 />
 
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* PRICE */}
-                <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur px-5 py-2 rounded-full font-semibold text-black shadow-md">
+                <div className="absolute bottom-4 right-4 bg-white px-4 py-1.5 rounded-full text-sm font-semibold shadow">
                   From ${tour.price}
                 </div>
               </div>
 
               {/* CONTENT */}
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-5">
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
                   {tour.title}
                 </h3>
 
-                <div className="flex items-center gap-3 text-gray-700 mb-8">
-                  <Users className="w-5 h-5 text-orange-500" />
+                <div className="flex items-center gap-2 text-gray-600 text-sm mb-6">
+                  <Users className="w-4 h-4 text-orange-500" />
                   Up to {tour.maxPeople} Guests
                 </div>
 
                 <Link href={`/tours/${tour.id}`}>
-                  <button className="w-full py-4 rounded-full font-semibold text-white bg-linear-to-r from-orange-600 to-amber-500 transition hover:scale-[1.05] hover:shadow-lg">
+                  <button className="w-full py-3 rounded-full text-sm sm:text-base font-semibold text-white bg-linear-to-r from-orange-600 to-amber-500 transition hover:scale-[1.03] hover:shadow-md">
                     Explore Tour
                   </button>
                 </Link>
@@ -69,10 +70,10 @@ export default function OneDayTours() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-24">
+        <div className="text-center mt-14 sm:mt-20">
           <Link
             href="/contact"
-            className="inline-block px-14 py-5 rounded-full text-lg font-semibold bg-black text-white transition hover:scale-110 hover:shadow-2xl"
+            className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold bg-black text-white transition hover:scale-105 hover:shadow-xl"
           >
             Plan a Private Day Tour
           </Link>

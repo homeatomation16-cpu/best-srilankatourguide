@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/components/TourGallery.jsx"  ],
   "exclude": [
     "node_modules"
   ]

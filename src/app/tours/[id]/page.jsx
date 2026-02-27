@@ -10,6 +10,7 @@ import { TOURS } from "../../../data/tours";
 
 import TourGallery from "../../components/TourGallery";
 import TourCard from "../../components/TourCard";
+import PackagePrice from "../../components/PackagePrice";
 
 /* ─────────────────────────────────────────
    Booking Form Component
@@ -46,12 +47,15 @@ function BookingForm({ tour }) {
           vehicle: tour.title,
           tour_title: tour.title,
         },
-        "_PDrKKzoflFb6YJUT"
+        "_PDrKKzoflFb6YJUT",
       );
 
       const message = `Booking Request\n\nTour: ${tour.title}\nName: ${form.name}\nPhone: ${form.phone || "Not provided"}\nDate: ${form.date || "Not specified"}\nTime: ${form.time || "Not specified"}\nNotes: ${form.notes || "None"}`;
 
-      window.open(`https://wa.me/94769300334?text=${encodeURIComponent(message)}`, "_blank");
+      window.open(
+        `https://wa.me/94769300334?text=${encodeURIComponent(message)}`,
+        "_blank",
+      );
 
       setStatus("sent");
     } catch (err) {
@@ -71,7 +75,9 @@ function BookingForm({ tour }) {
       {/* Header */}
       <div className="bg-orange-700 px-8 py-7">
         <div className="flex items-baseline gap-2 mb-1">
-          <span className="text-xs uppercase tracking-wider text-white/70">from</span>
+          <span className="text-xs uppercase tracking-wider text-white/70">
+            from
+          </span>
           <span className="font-serif text-4xl font-bold text-white leading-none">
             ${tour.price}
           </span>
@@ -240,12 +246,22 @@ export default function TourDetailsPage() {
             {[
               { label: "Duration", value: `${tour.duration} Days` },
               { label: "Price From", value: `$${tour.price}` },
-              { label: "Max Group", value: tour.maxPeople ? `${tour.maxPeople} pax` : "10 pax" },
-              { label: "Min Age", value: tour.minAge ? `${tour.minAge}+` : "16+" },
+              {
+                label: "Max Group",
+                value: tour.maxPeople ? `${tour.maxPeople} pax` : "10 pax",
+              },
+              {
+                label: "Min Age",
+                value: tour.minAge ? `${tour.minAge}+` : "16+",
+              },
             ].map((item, i) => (
               <div key={i} className="px-8 py-5 max-sm:px-6 max-sm:py-4">
-                <p className="text-[11px] uppercase tracking-wider text-white/60 mb-1">{item.label}</p>
-                <p className="font-serif text-2xl lg:text-3xl text-white font-medium">{item.value}</p>
+                <p className="text-[11px] uppercase tracking-wider text-white/60 mb-1">
+                  {item.label}
+                </p>
+                <p className="font-serif text-2xl lg:text-3xl text-white font-medium">
+                  {item.value}
+                </p>
               </div>
             ))}
           </div>
@@ -260,7 +276,9 @@ export default function TourDetailsPage() {
             {/* Overview */}
             <section>
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-xs font-medium tracking-[0.25em] uppercase text-orange-700">Tour Overview</span>
+                <span className="text-xs font-medium tracking-[0.25em] uppercase text-orange-700">
+                  Tour Overview
+                </span>
                 <div className="h-px flex-1 bg-stone-200" />
               </div>
               <p className="text-xl leading-relaxed text-stone-700 font-light">
@@ -272,11 +290,18 @@ export default function TourDetailsPage() {
             <section className="grid md:grid-cols-2 gap-10">
               {tour.included?.length > 0 && (
                 <div className="bg-white border border-stone-200 p-8 rounded-lg">
-                  <h3 className="text-2xl font-serif font-semibold mb-6 text-stone-800">What&apos;s Included</h3>
+                  <h3 className="text-2xl font-serif font-semibold mb-6 text-stone-800">
+                    What&apos;s Included
+                  </h3>
                   <ul className="space-y-3">
                     {tour.included.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-stone-700">
-                        <span className="mt-1.5 w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs shrink-0">✓</span>
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-stone-700"
+                      >
+                        <span className="mt-1.5 w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs shrink-0">
+                          ✓
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -286,11 +311,18 @@ export default function TourDetailsPage() {
 
               {tour.excluded?.length > 0 && (
                 <div className="bg-white border border-stone-200 p-8 rounded-lg">
-                  <h3 className="text-2xl font-serif font-semibold mb-6 text-stone-800">Not Included</h3>
+                  <h3 className="text-2xl font-serif font-semibold mb-6 text-stone-800">
+                    Not Included
+                  </h3>
                   <ul className="space-y-3">
                     {tour.excluded.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-stone-700">
-                        <span className="mt-1.5 w-5 h-5 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs shrink-0">✕</span>
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-stone-700"
+                      >
+                        <span className="mt-1.5 w-5 h-5 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs shrink-0">
+                          ✕
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -299,129 +331,119 @@ export default function TourDetailsPage() {
               )}
             </section>
 
-            {/* Itinerary */}
-            {tour.itinerary && Array.isArray(tour.itinerary) && tour.itinerary.length > 0 && (
-              <section>
-                <div className="flex items-baseline gap-6 mb-10">
-                  <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-stone-900">Detailed Itinerary</h2>
-                  <span className="text-lg text-stone-500">({tour.itinerary.length} days)</span>
-                </div>
+            {tour.itinerary &&
+              Array.isArray(tour.itinerary) &&
+              tour.itinerary.length > 0 && (
+                <section>
+                  <div className="flex items-baseline gap-6 mb-10">
+                    <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-stone-900">
+                      Detailed Itinerary
+                    </h2>
+                    <span className="text-lg text-stone-500">
+                      ({tour.itinerary.length} days)
+                    </span>
+                  </div>
 
-                <div className="space-y-6">
-                  {tour.itinerary.map((day, index) => {
-                    const dayNumber = day.days?.[0] || (index + 1);
-                    const titleParts = day.title?.split(" - ") || [];
-                    const destination = titleParts.length > 1 ? titleParts[titleParts.length - 1].trim() : "";
-                    const mainTitle = titleParts[0]?.replace(/^Day\s*\d+\s*[-–]\s*/i, "") || day.title;
+                  <div className="space-y-8">
+                    {tour.itinerary.map((day, index) => {
+                      const dayNumber = day.days?.[0] || index + 1;
+                      const titleParts = day.title?.split(" - ") || [];
+                      const destination =
+                        titleParts.length > 1
+                          ? titleParts[titleParts.length - 1].trim()
+                          : "";
+                      const mainTitle =
+                        titleParts[0]?.replace(/^Day\s*\d+\s*[-–]\s*/i, "") ||
+                        day.title;
 
-                    return (
-                      <div
-                        key={index}
-                        className="bg-white border border-stone-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
-                      >
-                        <div className="grid md:grid-cols-[120px_1fr] max-sm:grid-cols-[90px_1fr]">
-                          {/* Day badge */}
-                          <div className="bg-stone-900 px-6 py-10 flex flex-col items-center justify-center text-center">
-                            <span className="text-5xl font-bold text-white/20 leading-none max-sm:text-4xl">
-                              {dayNumber}
-                            </span>
-                            <span className="text-xs uppercase tracking-widest text-amber-500 mt-1">Day</span>
-                          </div>
+                      return (
+                        <div
+                          key={index}
+                          className="bg-white border border-stone-200 rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                        >
+                          <div className="grid md:grid-cols-[200px_1fr] max-sm:grid-cols-1">
+                            {/* ================= IMAGE DAY BADGE ================= */}
+                            <div className="relative min-h-65 overflow-hidden">
+                              <Image
+                                src={day.image || "/itinerary/default.jpg"}
+                                alt={`Day ${dayNumber}`}
+                                fill
+                                className="object-cover"
+                              />
 
-                          {/* Content */}
-                          <div className="p-8 max-sm:p-6">
-                            {destination && (
-                              <span className="inline-block bg-amber-50 text-orange-800 text-xs font-medium px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">
-                                {destination}
-                              </span>
-                            )}
+                              {/* Dark overlay */}
+                              <div className="absolute inset-0 bg-linear-to-b from-black/50 to-black/70" />
 
-                            <h3 className="font-serif text-2xl font-semibold text-stone-900 mb-3">
-                              {mainTitle}
-                            </h3>
-
-                            {day.description && (
-                              <p className="text-stone-600 italic mb-5">{day.description}</p>
-                            )}
-
-                            {day.activities?.length > 0 && (
-                              <div className="flex flex-wrap gap-2 mb-6">
-                                {day.activities.map((act, i) => (
-                                  <span
-                                    key={i}
-                                    className="inline-flex items-center gap-2 bg-stone-50 border border-stone-200 px-3.5 py-1.5 text-sm text-stone-700 rounded"
-                                  >
-                                    <span className="text-amber-500 text-xs">✦</span>
-                                    {act}
-                                  </span>
-                                ))}
+                              {/* Day number */}
+                              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <span className="text-6xl font-bold text-white/25 leading-none">
+                                  {dayNumber}
+                                </span>
+                                <span className="text-xs uppercase tracking-[0.3em] text-amber-400 mt-2">
+                                  Day
+                                </span>
                               </div>
-                            )}
+                            </div>
 
-                            {/* Options (branching days) */}
-                            {day.options?.map((option, optIdx) => (
-                              <div key={optIdx} className="mt-6 border-l-4 border-orange-600 pl-5 bg-stone-50/60 py-4 pr-4 rounded-r">
-                                {/* Option image */}
-                                {option.image && (
-                                  <div className="relative w-full h-52 mb-4 rounded-md overflow-hidden">
-                                    <Image
-                                      src={option.image}
-                                      alt={option.title}
-                                      fill
-                                      className="object-cover"
-                                    />
-                                  </div>
-                                )}
-                                <p className="text-sm font-medium uppercase tracking-wider text-orange-700 mb-3">
-                                  {option.title}
+                            {/* ================= CONTENT ================= */}
+                            <div className="p-8 max-sm:p-6">
+                              {destination && (
+                                <span className="inline-block bg-amber-50 text-orange-800 text-xs font-medium px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">
+                                  {destination}
+                                </span>
+                              )}
+
+                              <h3 className="font-serif text-2xl font-semibold text-stone-900 mb-4">
+                                {mainTitle}
+                              </h3>
+
+                              {day.description && (
+                                <p className="text-stone-600 italic mb-6">
+                                  {day.description}
                                 </p>
-                                <div className="flex flex-wrap gap-2">
-                                  {option.activities?.map((act, j) => (
-                                    <span key={j} className="inline-flex items-center gap-2 bg-white border border-stone-200 px-3 py-1.5 text-sm text-stone-700 rounded">
-                                      <span className="text-amber-500 text-xs">✦</span>
+                              )}
+
+                              {day.activities?.length > 0 && (
+                                <div className="flex flex-wrap gap-3 mb-6">
+                                  {day.activities.map((act, i) => (
+                                    <span
+                                      key={i}
+                                      className="inline-flex items-center gap-2 bg-stone-50 border border-stone-200 px-4 py-2 text-sm text-stone-700 rounded-md"
+                                    >
+                                      <span className="text-amber-500 text-xs">
+                                        ✦
+                                      </span>
                                       {act}
                                     </span>
                                   ))}
                                 </div>
-                                {option.overnight && (
-                                  <p className="mt-4 text-sm text-emerald-700 flex items-center gap-2">
-                                    <span>🌙</span> {option.overnight}
-                                  </p>
-                                )}
-                                {option.drop && (
-                                  <p className="mt-2 text-sm text-orange-700 flex items-center gap-2">
-                                    <span>✈</span> {option.drop}
-                                  </p>
-                                )}
-                              </div>
-                            ))}
+                              )}
 
-                            {/* Simple overnight / drop */}
-                            {day.overnight && !day.options?.some(o => o.overnight) && (
-                              <p className="mt-5 text-sm font-medium text-emerald-700 flex items-center gap-2">
-                                <span>🌙</span> {day.overnight}
-                              </p>
-                            )}
+                              {day.overnight && (
+                                <p className="mt-4 text-sm font-medium text-emerald-700 flex items-center gap-2">
+                                  <span>🌙</span> {day.overnight}
+                                </p>
+                              )}
 
-                            {day.drop && (
-                              <p className="mt-3 text-sm font-medium text-orange-700 flex items-center gap-2">
-                                <span>✈</span> {day.drop}
-                              </p>
-                            )}
+                              {day.drop && (
+                                <p className="mt-3 text-sm font-medium text-orange-700 flex items-center gap-2">
+                                  <span>✈</span> {day.drop}
+                                </p>
+                              )}
 
-                            {day.note && (
-                              <p className="mt-5 text-sm italic text-stone-500 bg-amber-50/40 border-l-4 border-amber-400 pl-4 py-2.5">
-                                Note: {day.note}
-                              </p>
-                            )}
+                              {day.note && (
+                                <p className="mt-5 text-sm italic text-stone-500 bg-amber-50/40 border-l-4 border-amber-400 pl-4 py-2.5">
+                                  Note: {day.note}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            )}
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
           </div>
 
           {/* Right Column: Sticky Booking Form */}
@@ -434,8 +456,12 @@ export default function TourDetailsPage() {
       {/* Similar Tours */}
       <div className="max-w-7xl mx-auto px-12 py-20 max-lg:px-8 max-sm:px-5 max-sm:py-12">
         <div className="flex items-baseline gap-6 mb-10">
-          <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-stone-900">You Might Also Like</h2>
-          <span className="text-lg text-stone-500">Similar tours we recommend</span>
+          <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-stone-900">
+            You Might Also Like
+          </h2>
+          <span className="text-lg text-stone-500">
+            Similar tours we recommend
+          </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {TOURS.map((t) => (
@@ -444,10 +470,8 @@ export default function TourDetailsPage() {
         </div>
       </div>
 
-      <TourGallery
-        tourId={tour.id}
-        tourTitle={tour.title}
-      />
+      <TourGallery tourId={tour.id} tourTitle={tour.title} />
+      <PackagePrice />
     </div>
   );
 }

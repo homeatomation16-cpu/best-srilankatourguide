@@ -51,7 +51,7 @@ export default function Gallery() {
 
   return (
     <section className="py-28 bg-linear-to-brom-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="  x-overflow-hidden mx-auto px-6">
         
         {/* HEADER */}
         <div className="text-center mb-16">

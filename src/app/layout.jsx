@@ -6,9 +6,9 @@ import PageTransition from "./components/PageTransition";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-;
-
+// ==============================
 // Google Fonts
+// ==============================
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -27,7 +27,9 @@ const sinhala = Noto_Sans_Sinhala({
   variable: "--font-sinhala",
 });
 
-// ✅ Thea Amelia Local Font
+// ==============================
+// Local Font
+// ==============================
 const thea = localFont({
   src: "./fonts/TheaAmelia-eZM86.otf",
   variable: "--font-thea",
@@ -39,6 +41,9 @@ export const metadata = {
   description: "Luxury & Adventure Tours in Sri Lanka",
 };
 
+// ==============================
+// Root Layout
+// ==============================
 export default function RootLayout({ children }) {
   return (
     <html
@@ -50,22 +55,30 @@ export default function RootLayout({ children }) {
         ${thea.variable}
       `}
     >
-      <body className="antialiased bg-white text-black">
+      <body className="antialiased bg-white text-black overflow-x-hidden">
+        
+        {/* GLOBAL WRAPPER (Prevents overflow completely) */}
+        <div className="min-h-screen w-full overflow-x-hidden flex flex-col">
 
-        {/* HEADER */}
-        <header className="bg-white sticky top-0 z-50 shadow-md">
-         
-          {/* @ts-expect-error Async Server Component */}
-          <Navbar />
-        </header>
+          {/* HEADER */}
+          <header className="bg-white sticky top-0 z-50 shadow-md w-full">
+            {/* @ts-expect-error Async Server Component */}
+            <Navbar />
+          </header>
 
-        <PageTransition>
-          {children}
-        </PageTransition>
+          {/* PAGE CONTENT */}
+          <main className="flex-1 w-full overflow-x-hidden">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </main>
 
-        {/* FOOTER */}
-        <Footer />
+          {/* FOOTER */}
+          <footer className="w-full">
+            <Footer />
+          </footer>
 
+        </div>
       </body>
     </html>
   );

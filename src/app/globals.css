@@ -1,3 +1,6 @@
+/* =========================
+   TAILWIND IMPORT
+   ========================= */
 @import "tailwindcss";
 
 /* =========================
@@ -19,34 +22,44 @@
 }
 
 /* =========================
+   GLOBAL RESET
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   HTML & BODY FIX
+   ========================= */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* 🔥 Prevent horizontal scroll */
+  scroll-behavior: smooth;
+}
+
+/* =========================
    BASE FONT
    ========================= */
 body {
   font-family: var(--font-body), sans-serif;
-}
-@import "tailwindcss";
-
-/* =========================
-   ROOT VARIABLES
-   ========================= */
-:root {
-  /* Font variables from layout.jsx */
-  --font-body: var(--font-poppins);
-  --font-heading: var(--font-playfair);
-  --font-accent: var(--font-thea);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================
-   TAILWIND FONT TOKENS
+   MEDIA FIX (Images/Videos)
    ========================= */
-@theme inline {
-  --font-sans: var(--font-body);
-  --font-serif: var(--font-heading);
-}
-
-/* =========================
-   BASE FONT
-   ========================= */
-body {
-  font-family: var(--font-body), sans-serif;
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

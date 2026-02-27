@@ -6,65 +6,120 @@ import { DESTINATIONS } from "../../data/destinations";
 
 export default function DestinationsPage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-amber-50 px-6 py-20">
+    <main className="min-h-screen bg-[#faf7f2] ">
 
-      {/* HEADER */}
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Sri Lanka Destinations
-        </h1>
+      {/* ================= HERO SECTION ================= */}
+      <header className="relative h-[30vh] md:h-[50vh] w-full overflow-hidden pt-0.5">
 
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover the most beautiful places across Sri Lanka.
+        {/* Background Image */}
+        <Image
+          src="/cover.jpg"
+          alt="Sri Lanka Destinations"
+          fill
+          priority
+          className="object-fill absolute top-0 transition-transform duration-700 hover:scale-105"
+        />
+
+        {/* Dark Luxury Overlay */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80" />
+
+        {/* Hero Content */}
+        <div className="relative pt-36 flex h-full flex-col items-center justify-center px-4 text-center text-white">
+
+          <p className="mb-2 font-sans text-xs font-semibold uppercase tracking-[0.4em] text-white/80">
+            Travel Guide
+          </p>
+
+          <div
+            className="flex flex-row gap-4 mb-6 lg:text-3xl font-bold leading-tight "
+            style={{
+              fontFamily: "'Georgia', 'Times New Roman', serif",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Sri Lanka
+            <span className="block italic text-[#d4a853]">
+              Destinations
+            </span>
+          </div>
+
+          <div className="lg:mb-6 h-px w-24 bg-[#d4a853]" />
+
+          <p className="mb-8 text-xs max-w-xl font-light leading-relaxed text-gray-200 md:text-lg">
+            Discover the most beautiful places across the pearl of the Indian Ocean.
+          </p>
+        </div>
+
+        {/* Bottom Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#faf7f2] to-transparent" />
+      </header>
+
+      {/* ================= DESTINATIONS GRID ================= */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {DESTINATIONS.map((d, index) => (
+            <Link
+              key={d.title}
+              href={`/destinations/${d.slug ?? d.title.toLowerCase().replace(/\s+/g, "-")}`}
+              className="group relative block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              {/* Number Badge */}
+              <span className="absolute left-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-[#1a1209]/80 font-sans text-xs font-bold text-[#d4a853] backdrop-blur-sm">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              {/* Image */}
+              <div className="relative h-64 w-full overflow-hidden">
+                <Image
+                  src={d.image}
+                  alt={d.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-[#1a1209]/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              </div>
+
+              {/* Content */}
+              <div className="relative p-6">
+
+                <div className="mb-4 h-0.5 w-8 bg-[#d4a853] transition-all duration-300 group-hover:w-16" />
+
+                <h2
+                  className="mb-2 text-xl font-bold text-[#1a1209] transition-colors duration-300 group-hover:text-[#8b4513]"
+                  style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+                >
+                  {d.title}
+                </h2>
+
+                <p className="mb-5 font-sans text-sm leading-relaxed text-[#6b5e4e] line-clamp-3">
+                  {d.description}
+                </p>
+
+                <span className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-widest text-[#d4a853] transition-all duration-300 group-hover:gap-3">
+                  Explore
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </span>
+              </div>
+
+              {/* Bottom Gold Line */}
+              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#d4a853] transition-all duration-500 group-hover:w-full" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= FOOTER ACCENT ================= */}
+      <div className="py-16 text-center">
+        <div className="mx-auto h-px w-24 bg-[#d4a853]/40" />
+        <p className="mt-4 font-sans text-xs uppercase tracking-widest text-[#9e8e7e]">
+          Pearl of the Indian Ocean
         </p>
       </div>
 
-      {/* GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-        {DESTINATIONS.map((d) => (
-          <Link
-            key={d.id}
-            href={`/destinations/${d.id}`}
-            className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:-translate-y-2 transition duration-300"
-          >
-
-            {/* IMAGE */}
-            <div className="relative h-64 w-full">
-              <Image
-                src={d.image}
-                alt={d.title}
-                fill
-                priority
-                sizes="100vw"
-                
-                className="object-cover group-hover:scale-110 transition duration-700"
-              />
-
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-            </div>
-
-            {/* CONTENT */}
-            <div className="p-6">
-
-              <h2 className="text-2xl font-bold mb-2">
-                {d.title}
-              </h2>
-
-              <p className="text-gray-600 text-sm line-clamp-2">
-                {d.description}
-              </p>
-
-              <div className="mt-4 text-amber-600 font-semibold">
-                Explore →
-              </div>
-
-            </div>
-
-          </Link>
-        ))}
-
-      </div>
-    </div>
+    </main>
   );
 }

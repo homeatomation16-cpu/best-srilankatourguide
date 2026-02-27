@@ -4,24 +4,85 @@ import Image from "next/image";
 import Link from "next/link";
 import { Users } from "lucide-react";
 import { vehicles } from "../../data/vehicles";
+import { useEffect, useState } from "react";
 
 export default function VehiclesPage() {
+  const languageDrivers = [
+    "English Speaking",
+    "French Speaking",
+    "German Speaking",
+    "Hindi Speaking",
+    "Spanish Speaking",
+    "Italian Speaking",
+  ];
+
+  const [currentLang, setCurrentLang] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentLang((prev) =>
+        prev === languageDrivers.length - 1 ? 0 : prev + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-orange-50 px-6 py-20">
+    <div className="min-h-screen bg-linear-to-b from-white to-orange-50">
 
-      {/* HEADER */}
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Our Vehicles
-        </h1>
+      {/* ================= HERO ================= */}
+      <div className="relative h-[45vh] md:h-[55vh] min-h-100 overflow-hidden">
 
+        <Image
+          src="/vehicles.jpg"
+          alt="Vehicles"
+          fill
+          priority
+          sizes="100vw"
+          className="object-fill"
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-stone-900/80 via-stone-900/40 to-transparent" />
+
+        {/* Centered Hero Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Our Vehicles
+          </h1>
+
+          <h2 className="text-xl md:text-2xl font-playfair mb-4">
+            Recommended Drivers & Guides
+          </h2>
+
+          <h3 className="text-sm md:text-base font-medium text-white/90">
+            We have{" "}
+            <span
+              key={currentLang}
+              className="text-orange-400 font-semibold animate-fadeUp"
+            >
+              {languageDrivers[currentLang]}
+            </span>{" "}
+            Drivers
+          </h3>
+        </div>
+
+        {/* Bottom Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-white to-transparent" />
+      </div>
+
+      {/* ================= INTRO TEXT ================= */}
+      <div className="text-center px-6 py-12">
         <p className="text-gray-600 max-w-2xl mx-auto">
           Choose from our modern, comfortable and well-maintained fleet.
+          Travel with comfort and confidence across Sri Lanka with our
+          experienced drivers and multilingual guides.
         </p>
       </div>
 
-      {/* GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {/* ================= VEHICLE GRID ================= */}
+      <div className="max-w-7xl mx-auto px-6 pb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
         {vehicles.map((v) => (
           <Link
@@ -32,7 +93,6 @@ export default function VehiclesPage() {
 
             {/* IMAGE */}
             <div className="relative h-64 w-full">
-
               <Image
                 src={v.image || "/placeholder.jpg"}
                 alt={v.name || "Vehicle"}
@@ -47,7 +107,6 @@ export default function VehiclesPage() {
                   {v.price} / day
                 </div>
               )}
-
             </div>
 
             {/* CONTENT */}

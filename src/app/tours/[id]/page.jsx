@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useParams, notFound } from "next/navigation";
 import Image from "next/image";
-import emailjs from "emailjs-com";
+
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { TOURS } from "../../../data/tours";
@@ -31,38 +31,51 @@ function BookingForm({ tour }) {
   };
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email) {
-      alert("Please fill in your name and email.");
-      return;
-    }
+  if (!form.name || !form.email) {
+    alert("Please fill in your name and email.");
+    return;
+  }
 
-    setStatus("sending");
+  setStatus("sending");
 
-    try {
-      await emailjs.send(
-        "service_9fflwkc",
-        "template_4fclvxr",
-        {
-          ...form,
-          vehicle: tour.title,
-          tour_title: tour.title,
-        },
-        "_PDrKKzoflFb6YJUT",
-      );
+  try {
+    const res = await fetch("/api/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...form,
+        itemName: tour.title,
+        bookingType: "Tour",
+      }),
+    });
 
-      const message = `Booking Request\n\nTour: ${tour.title}\nName: ${form.name}\nPhone: ${form.phone || "Not provided"}\nDate: ${form.date || "Not specified"}\nTime: ${form.time || "Not specified"}\nNotes: ${form.notes || "None"}`;
+    const data = await res.json();
+    if (!data.success) throw new Error();
 
-      window.open(
-        `https://wa.me/94769300334?text=${encodeURIComponent(message)}`,
-        "_blank",
-      );
+    // WhatsApp message
+    const message = `Booking Request
 
-      setStatus("sent");
-    } catch (err) {
-      console.error("Booking error:", err);
-      setStatus("error");
-    }
-  };
+Tour: ${tour.title}
+Name: ${form.name}
+Phone: ${form.phone || "Not provided"}
+Date: ${form.date || "Not specified"}
+Time: ${form.time || "Not specified"}
+Notes: ${form.notes || "None"}`;
+
+    window.open(
+      `https://wa.me/94769300334?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
+
+    setStatus("sent");
+
+  } catch (err) {
+    console.error("Booking error:", err);
+    setStatus("error");
+  }
+};
 
   const inputClass =
     "w-full bg-white/[0.07] border border-amber-700/30 text-white placeholder-white/40 px-4 py-3 text-sm outline-none focus:border-amber-500/60 focus:bg-white/10 transition-all rounded-sm";
@@ -124,7 +137,7 @@ function BookingForm({ tour }) {
               onChange={(value) => handleChange("phone", value || "")}
               international
               countryCallingCodeEditable={false}
-              className="w-full"
+              className="w-full text-white"
             />
           </div>
         </div>

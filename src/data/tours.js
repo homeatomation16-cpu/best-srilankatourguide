@@ -854,7 +854,7 @@ export const TOURS = [
     {
       days: [8],
       title: "Day 08 - Departure",
-      image: "/tours/colombo.jpg",
+      image: "/tours/colombo-airport.jpg",
       activities: [
         "Madu River Safari",
         "Colombo City Tour",
@@ -935,7 +935,7 @@ export const TOURS = [
     {
       days: [8],
       title: "Day 08 - Departure",
-      image: "/tours/colombo.jpg",
+      image: "/tours/colombo-airport.jpg",
       activities: ["Colombo City Tour"],
       drop: "Airport",
     },
@@ -968,7 +968,7 @@ export const TOURS = [
     { days: [5], title: "Day 05 - Pasikuda", image: "/tours/pasikuda.jpg", activities: ["Beach Leisure"], overnight: "Pasikuda" },
     { days: [6], title: "Day 06 - Trincomalee", image: "/tours/trincomalee.jpg", activities: ["Water Sports"], overnight: "Trincomalee" },
     { days: [7], title: "Day 07 - Trincomalee Exploration", image: "/tours/trincomalee.jpg", activities: ["Pigeon Island"], overnight: "Trincomalee" },
-    { days: [8], title: "Day 08 - Departure", image: "/tours/colombo.jpg", activities: ["Colombo City Tour"], drop: "Airport" },
+    { days: [8], title: "Day 08 - Departure", image: "/tours/colombo-airport.jpg", activities: ["Colombo City Tour"], drop: "Airport" },
   ],
 },
 
@@ -994,7 +994,7 @@ export const TOURS = [
     { days: [5], title: "Day 05 - Pasikuda", image: "/tours/pasikuda.jpg", overnight: "Hotel - Pasikuda" },
     { days: [6], title: "Day 06 - Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Hotel - Trincomalee" },
     { days: [7], title: "Day 07 - Trincomalee Exploration", image: "/tours/trincomalee.jpg", overnight: "Hotel - Trincomalee" },
-    { days: [8], title: "Day 08 - Departure", image: "/tours/colombo.jpg", drop: "Airport" },
+    { days: [8], title: "Day 08 - Departure", image: "/tours/colombo-airport.jpg", drop: "Airport" },
   ],
 },
 
@@ -1162,7 +1162,7 @@ export const TOURS = [
     {
       days: [10],
       title: "Day 10 - Colombo & Departure",
-      image: "/tours/colombo.jpg",
+      image: "/tours/colombo-airport.jpg",
       activities: [
         "Galle Dutch Fort",
         "Turtle Conservation Project",
@@ -1232,10 +1232,10 @@ export const TOURS = [
     { days: [4], title: "Day 04 - Kandy", image: "/tours/kandy.jpg", overnight: "Kandy" },
     { days: [5], title: "Day 05 - Habarana", image: "/tours/habarana.jpg", overnight: "Habarana" },
     { days: [6], title: "Day 06 - Pasikuda", image: "/tours/pasikuda.jpg", overnight: "Pasikuda" },
-    { days: [7], title: "Day 07 - Batticaloa", image: "/tours/pasikuda.jpg", overnight: "Pasikuda" },
+    { days: [7], title: "Day 07 - Batticaloa", image: "/tours/batticaloa.jpg", overnight: "Pasikuda" },
     { days: [8], title: "Day 08 - Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Trincomalee" },
     { days: [9], title: "Day 09 - Trincomalee Exploration", image: "/tours/trincomalee.jpg", overnight: "Trincomalee" },
-    { days: [10], title: "Day 10 - Departure", image: "/tours/colombo.jpg", drop: "Airport" },
+    { days: [10], title: "Day 10 - Departure", image: "/tours/colombo-airport.jpg", drop: "Airport" },
   ],
 },
 
@@ -1263,7 +1263,7 @@ export const TOURS = [
     { days: [7], title: "Pasikuda", image: "/tours/pasikuda.jpg", overnight: "Hotel - Pasikuda" },
     { days: [8], title: "Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Hotel - Trincomalee" },
     { days: [9], title: "Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Hotel - Trincomalee" },
-    { days: [10], title: "Departure", image: "/tours/colombo.jpg", drop: "Airport" },
+    { days: [10], title: "Departure", image: "/tours/colombo-airport.jpg", drop: "Airport" },
   ],
 },
 /* =====================================================
@@ -1474,7 +1474,7 @@ export const TOURS = [
     {
       days: [12],
       title: "Day 12 - Departure",
-      image: "/tours/colombo.jpg",
+      image: "/tours/colombo-airport.jpg",
       activities: [
         "Gangaramaya Temple",
         "Independence Square",
@@ -1509,12 +1509,12 @@ export const TOURS = [
     { days: [4], title: "Kandy", image: "/tours/kandy.jpg", overnight: "Kandy" },
     { days: [5], title: "Habarana", image: "/tours/habarana.jpg", overnight: "Habarana" },
     { days: [6], title: "Pasikuda", image: "/tours/pasikuda.jpg", overnight: "Pasikuda" },
-    { days: [7], title: "Batticaloa", image: "/tours/pasikuda.jpg", overnight: "Pasikuda" },
+    { days: [7], title: "Batticaloa", image: "/tours/batticaloa.jpg", overnight: "Pasikuda" },
     { days: [8], title: "Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Trincomalee" },
     { days: [9], title: "Anuradhapura", image: "/tours/anuradhapura.jpg", overnight: "Anuradhapura" },
     { days: [10], title: "Kalpitiya", image: "/tours/kalpitiya.jpg", overnight: "Kalpitiya" },
     { days: [11], title: "Kalpitiya", image: "/tours/kalpitiya.jpg", overnight: "Kalpitiya" },
-    { days: [12], title: "Departure", image: "/tours/colombo.jpg", drop: "Airport" },
+    { days: [12], title: "Departure", image: "/tours/colombo-airport.jpg", drop: "Airport" },
   ],
 },
 
@@ -1543,12 +1543,12 @@ export const TOURS = [
     { days: [4], title: "Kandy", image: "/tours/kandy.jpg", overnight: "Hotel - Kandy" },
     { days: [5], title: "Habarana", image: "/tours/habarana.jpg", overnight: "Hotel - Habarana" },
     { days: [6], title: "Pasikuda", image: "/tours/pasikuda.jpg", overnight: "Hotel - Pasikuda" },
-    { days: [7], title: "Batticaloa", image: "/tours/pasikuda.jpg", overnight: "Hotel - Pasikuda" },
+    { days: [7], title: "Batticaloa", image: "/tours/batticaloa.jpg", overnight: "Hotel - Pasikuda" },
     { days: [8], title: "Trincomalee", image: "/tours/trincomalee.jpg", overnight: "Hotel - Trincomalee" },
     { days: [9], title: "Anuradhapura", image: "/tours/anuradhapura.jpg", overnight: "Hotel - Anuradhapura" },
     { days: [10], title: "Kalpitiya", image: "/tours/kalpitiya.jpg", overnight: "Hotel - Kalpitiya" },
     { days: [11], title: "Kalpitiya", image: "/tours/kalpitiya.jpg", overnight: "Hotel - Kalpitiya" },
-    { days: [12], title: "Departure", image: "/tours/colombo.jpg", drop: "Airport" },
+    { days: [12], title: "Departure", image: "/tours/colombo-airport.jpg", drop: "Airport" },
   ],
 },
 ];

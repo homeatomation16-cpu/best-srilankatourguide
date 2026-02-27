@@ -23,7 +23,7 @@ Price: ${v.price}
     <div className="bg-gray-50">
 
       {/* HERO */}
-      <div className="bg-linear-to-r from-orange-600 to-amber-500 text-white text-center p-14">
+      <div className="bg-linear-to-r from-orange-600 to-amber-500 text-white text-center p-24">
         <h1 className="text-5xl font-bold">{v.name}</h1>
         <p className="text-lg mt-2">{v.type}</p>
       </div>

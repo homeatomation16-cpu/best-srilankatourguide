@@ -24,7 +24,12 @@ inline {
 body {
   font-family: var(--font-body), sans-serif;
 }
-
+.font-thea {
+  font-family: var(--font-thea);
+}
+.font-playfair {
+  font-family: var(--font-playfair);
+}
 
 /* =========================
    ROOT VARIABLES

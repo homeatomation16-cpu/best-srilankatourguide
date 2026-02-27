@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import emailjs from "emailjs-com";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -29,20 +28,23 @@ export default function BookingBox({ vehicle }) {
 
     setStatus("sending");
 
-    const params = {
-      ...form,
-      vehicle: vehicle?.name
-    };
-
     try {
 
-      await emailjs.send(
-        "service_9fflwkc",
-        "template_4fclvxr",
-        params,
-        "_PDrKKzoflFb6YJUT"
-      );
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...form,
+          vehicle: vehicle?.name
+        })
+      });
 
+      const data = await res.json();
+      if (!data.success) throw new Error();
+
+      // WhatsApp message
       const msg = `Booking Request
 
 Name: ${form.name}
@@ -74,7 +76,6 @@ Notes: ${form.notes}
   return (
     <div className="bg-stone-900 p-8 text-white max-w-md">
 
-      {/* HEADER */}
       <div className="mb-6">
         <p className="text-xs uppercase tracking-[0.2em] text-white/50">
           Reserve Vehicle
@@ -84,7 +85,6 @@ Notes: ${form.notes}
         </h3>
       </div>
 
-      {/* NAME */}
       <div>
         <label className={labelClass}>Full Name *</label>
         <input
@@ -95,7 +95,6 @@ Notes: ${form.notes}
         />
       </div>
 
-      {/* EMAIL */}
       <div className="mt-4">
         <label className={labelClass}>Email Address *</label>
         <input
@@ -107,7 +106,6 @@ Notes: ${form.notes}
         />
       </div>
 
-      {/* PHONE */}
       <div className="mt-4">
         <label className={labelClass}>WhatsApp Number</label>
         <div className="[&_.PhoneInput]:flex [&_.PhoneInput]:items-center [&_.PhoneInput]:bg-white/[0.07] [&_.PhoneInput]:border [&_.PhoneInput]:border-amber-700/30 [&_.PhoneInput]:px-3.5 [&_.PhoneInput]:py-2.5 [&_.PhoneInput]:gap-2 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-none [&_.PhoneInputInput]:text-white [&_.PhoneInputInput]:text-sm [&_.PhoneInputInput]:outline-none [&_.PhoneInputInput]:w-full [&_.PhoneInputInput]:placeholder-white/20 [&_.PhoneInputCountrySelect]:bg-stone-900 [&_.PhoneInputCountrySelect]:text-amber-400 [&_.PhoneInputCountrySelect]:border-none [&_.PhoneInputCountrySelect]:text-sm">
@@ -119,13 +117,12 @@ Notes: ${form.notes}
         </div>
       </div>
 
-      {/* DATE + TIME */}
       <div className="grid grid-cols-2 gap-3 mt-4">
         <div>
           <label className={labelClass}>Date</label>
           <input
             type="date"
-            className={inputClass + " scheme-dark"}
+            className={inputClass}
             value={form.date}
             onChange={e => handle("date", e.target.value)}
           />
@@ -134,14 +131,13 @@ Notes: ${form.notes}
           <label className={labelClass}>Time</label>
           <input
             type="time"
-            className={inputClass + " scheme-dark"}
+            className={inputClass}
             value={form.time}
             onChange={e => handle("time", e.target.value)}
           />
         </div>
       </div>
 
-      {/* NOTES */}
       <div className="mt-4">
         <label className={labelClass}>Special Requests</label>
         <textarea
@@ -153,7 +149,6 @@ Notes: ${form.notes}
         />
       </div>
 
-      {/* BUTTON */}
       <button
         onClick={send}
         disabled={status === "sending" || status === "sent"}
@@ -174,7 +169,6 @@ Notes: ${form.notes}
           WhatsApp opened — please send to confirm.
         </p>
       )}
-
     </div>
   );
 }

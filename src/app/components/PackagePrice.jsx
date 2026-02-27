@@ -128,76 +128,7 @@ export default function PackagePrice() {
       </section>
 
       {/* BOOKING FORM */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
-
-          {submitted ? (
-            <div className="text-center py-12">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Booking Request Sent!
-              </h3>
-              <p className="text-gray-400 text-sm">
-                We'll confirm your transfer shortly.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-
-              <select
-                name="destination"
-                value={form.destination}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              >
-                <option value="">Select Destination</option>
-                {airportRates.map((d) => (
-                  <option key={d.destination} value={d.destination}>
-                    {d.destination}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                name="vehicle"
-                value={form.vehicle}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              >
-                <option value="">Select Vehicle</option>
-                <option value="car">Car</option>
-                <option value="van">Van</option>
-              </select>
-
-              {/* USD Price Preview */}
-              {form.destination && form.vehicle && (() => {
-                const rate = airportRates.find((d) => d.destination === form.destination);
-                const price = rate ? (form.vehicle === "car" ? rate.car : rate.van) : null;
-
-                return price && (
-                  <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 flex justify-between">
-                    <span className="text-sm text-gray-600">
-                      Estimated Price (USD)
-                    </span>
-                    <span className="text-orange-600 font-bold">
-                      ${convertToUSD(price)}
-                    </span>
-                  </div>
-                );
-              })()}
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-linear-to-r from-orange-500 to-amber-500 text-white font-semibold"
-              >
-                Submit Booking
-              </button>
-
-            </form>
-          )}
-
-        </div>
-      </section>
-
+      
     </main>
   );
 }

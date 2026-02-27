@@ -109,7 +109,586 @@ export const TOURS = [
     },
   ],
 },
+{
+  id: "sigiriya-one-day-tour",
+  title: "Sigiriya One Day Tour",
+  image: "/tours/sigiriya-one-day-tour.jpg",
+  price: 130,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Day Tour",
 
+  overview: "Visit Sri Lanka and book Sigiriya One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Hire a personal driver with private car for your trip and enjoy a comfortable and memorable journey to the iconic Sigiriya Rock Fortress and nearby attractions.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Colombo / Negombo to Sigiriya",
+      image: "/tours/sigiriya.jpg",
+      description:
+        "Enjoy a scenic drive to Sigiriya with cultural and nature experiences along the way.",
+      activities: [
+        "Pinnawala Elephant Orphanage (Optional)",
+        "Spice Garden Visit in Mawanella",
+        "Tea Factory & Tea Tasting",
+        "Kandy Lake Walk",
+        "Temple of the Sacred Tooth Relic",
+        "Cultural Dance Show (Optional)",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+  ]
+},
+{
+  id: "Udawalawa-Safari-one-day-tour",
+  title: "Udawalawa One Day Tour",
+  image: "/tours/udawalawa-safari-one-day-tour.jpg",
+  price: 130,
+  duration: 1,
+  maxPeople: 20,
+  minAge: 16,
+  tourType: "Private Day Tour",
+
+  overview: "Visit Sri Lanka and book Uda-Walawe One Day Tour with Sri Lanka Tours Driver. Sri Lanka is an amazing tropical country in the world. Our drivers are well-knowledge English speaking professional tourist drivers. Hire a personal driver with private car for your trip and enjoy a comfortable and memorable journey to Uda-Walawe National Park, one of the best wildlife safari destinations in Sri Lanka.",
+
+  vehicleInfo: [
+    "1 - 3 Persons → Car",
+    "4 - 10 Persons → KDH Van",
+    "11 - 20 Persons → Mini Coach",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Pickup & Drop Off",
+    "Fuel & Parking Fees",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Food & Drinks",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Colombo / Negombo to Uda-Walawe",
+      image: "/tours/udawalawa-safari-one-day-tour.jpg",
+      description:
+        "Enjoy a scenic drive to Uda-Walawe with cultural and nature experiences along the way.",
+      activities: [
+        "Pinnawala Elephant Orphanage (Optional)",
+        "Spice Garden Visit in Mawanella",
+        "Tea Factory & Tea Tasting",
+        "Kandy Lake Walk",
+        "Temple of the Sacred Tooth Relic",
+        "Cultural Dance Show (Optional)",
+      ],
+      overnight: "Return to Colombo / Negombo",
+    },
+
+  ]
+},
+/* =====================================================
+    05 DAYS TOURS
+===================================================== */
+{
+  id: "05-days-down-south",
+  region: "south",
+  hotelsIncluded: false,
+  title: "05 Days Down South Tour",
+  duration: 5,
+  maxPeople: 10,
+  minAge: 16,
+  price: 283.5,
+  image: "/tours/05-days-down-south-tour.jpg",
+
+  overview:
+    "This 5 days Down South tour covers Habarana, Polonnaruwa, Kandy, Nuwara Eliya, Ella, Mirissa or Hikkaduwa. Experience culture, wildlife safari, hill country train journey and beautiful southern beaches with a professional English speaking driver guide.",
+
+  vehicleInfo: {
+    car: "1 - 3 Persons → Car",
+    van: "4 - 10 Persons → KDH Van",
+    minimum: "Minimum two persons are required",
+    vipNote: "$567 for Two Persons - VIP Luxury Car (with Driver & Guiding)",
+  },
+
+  bookingOptions: [
+    "Fill out the booking form",
+    "Send an email to info@srilankatoursdriver.com",
+    "Send WhatsApp message to (+94) 769 300 334",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Fuel",
+    "Parking Fees",
+    "24 Hours Emergency Service",
+    "Local Sim Card (Free Data)",
+    "Water Bottles",
+    "Freeway Tickets (Toll Road)",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+    "Train Ticket(s)",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Airport / Colombo to Habarana",
+      image: "/tours/habarana.jpg",
+      activities: [
+        "Pickup from Airport or Hotel",
+        "Hiriwadunna Village Tour with Cooking Class",
+        "Eco Park Safari OR Pidurangala Sunset",
+      ],
+      overnight: "Overnight stay at Habarana",
+    },
+
+    {
+      days: [2],
+      title: "Day 02 - Habarana to Kandy",
+      image: "/tours/sigiriya.jpg",
+      activities: [
+        "Sigiriya Rock Fortress",
+        "Polonnaruwa Ancient Kingdom",
+        "Dambulla Cave Temple",
+        "Matale Hindu Temple",
+        "Kandy Lake Walk",
+        "Kandy Cultural Show",
+        "Temple of the Tooth",
+      ],
+      overnight: "Overnight stay at Kandy",
+    },
+
+    {
+      days: [3],
+      title: "Day 03 - Kandy to Ella",
+      image: "/tours/ella.jpg",
+      activities: [
+        "Tea Factory Visit",
+        "Ramboda Falls",
+        "Nuwara Eliya City",
+        "Train Journey Nanu Oya to Ella",
+        "Little Adam’s Peak",
+      ],
+      overnight: "Overnight stay at Ella",
+    },
+
+    {
+      days: [4],
+      title: "Day 04 - Ella to Mirissa / Hikkaduwa",
+      image: "/tours/yala.jpg",
+      activities: [
+        "Nine Arch Bridge",
+        "Ravana Waterfall",
+        "Elephant Transit Home",
+        "Udawalawa National Park Safari",
+      ],
+      overnight: "Overnight stay at Mirissa or Hikkaduwa",
+    },
+
+    {
+      days: [5],
+      title: "Day 05 - Beach to Colombo / Airport",
+      image: "/tours/colombo.jpg",
+      activities: [
+        "Whale Watching (Seasonal)",
+        "Galle Dutch Fort",
+        "Turtle Conservation Center",
+        "Madu River Safari",
+        "Colombo City Tour",
+      ],
+      drop: "Drop at Airport or Hotel in Colombo",
+    },
+  ],
+},
+{
+  id: "05-days-down-south-hotels",
+  region: "south",
+  hotelsIncluded: true,
+  title: "05 Days Down South Tour with Hotels",
+  duration: 5,
+  maxPeople: 2,
+  minAge: 16,
+  price: 382.5,
+  image: "/tours/05-days-down-south-tour-with-hotels.jpg",
+
+  overview:
+    "This 5 days Down South tour with hotels covers Habarana, Polonnaruwa, Kandy, Nuwara Eliya, Ella, Mirissa or Hikkaduwa. The package includes selected hotel accommodations with breakfast, private vehicle and professional English speaking driver guide.",
+
+  vehicleInfo: {
+    car: "1 - 3 Persons → Car",
+    van: "4 - 10 Persons → KDH Van",
+    minimum: "Minimum two persons are required",
+    vipNote:
+      "$765 for Two Persons - VIP Luxury Car (with Driver & Guiding) & Star Hotel with Breakfast",
+  },
+
+  bookingOptions: [
+    "Fill out the booking form",
+    "Send an email to info@srilankatoursdriver.com",
+    "Send WhatsApp message to (+94) 769 300 334",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Your Accommodation with Breakfast",
+    "Driver's Accommodation & Meals",
+    "Fuel",
+    "Parking Fees",
+    "24 Hours Emergency Service",
+    "Local Sim Card (Free Data)",
+    "Free Water Bottles",
+    "Freeway Tickets (Toll Road)",
+  ],
+
+  excluded: [
+    "Entrance & Activities Fees",
+    "Train Ticket(s)",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Airport / Colombo to Habarana",
+      image: "/tours/habarana.jpg",
+      activities: [
+        "Pickup from Airport or Hotel",
+        "Hiriwadunna Village Tour with Cooking Class",
+        "Eco Park Safari OR Pidurangala Sunset",
+      ],
+      overnight:
+        "Overnight stay at Go Go Green - Habarana (With Swimming Pool)",
+    },
+
+    {
+      days: [2],
+      title: "Day 02 - Habarana to Kandy",
+      image: "/tours/sigiriya.jpg",
+      activities: [
+        "Sigiriya Rock Fortress",
+        "Polonnaruwa Ancient Kingdom",
+        "Dambulla Cave Temple",
+        "Dambulla Vegetable Market",
+        "Matale Hindu Temple",
+        "Kandy Lake Walk",
+        "Kandy Cultural Show",
+        "Temple of the Tooth",
+      ],
+      overnight: "Overnight stay at Jack Tree Lodge - Kandy",
+    },
+
+    {
+      days: [3],
+      title: "Day 03 - Kandy to Ella",
+      image: "/tours/ella.jpg",
+      activities: [
+        "Glenloch Tea Factory Visit",
+        "Ramboda Falls",
+        "Nuwara Eliya City Tour",
+        "Train Journey Nanu Oya to Ella (Blue Train)",
+        "Little Adam’s Peak",
+      ],
+      overnight: "Overnight stay at Sunray Homestay - Ella",
+    },
+
+    {
+      days: [4],
+      title: "Day 04 - Ella to Mirissa / Hikkaduwa",
+      image: "/tours/mirissa.jpg",
+      activities: [
+        "Nine Arch Bridge",
+        "Ella Rock Viewpoint OR Ravana Cave & Buduruwagala",
+        "Ravana Waterfall",
+        "Elephant Transit Home",
+        "Udawalawa National Park Safari",
+      ],
+      overnight:
+        "Overnight stay at N34 - Mirissa OR Finlanka Hotel - Hikkaduwa (With Swimming Pool)",
+    },
+
+    {
+      days: [5],
+      title: "Day 05 - Departure to Colombo / Airport",
+      image: "/tours/colombo.jpg",
+      options: [
+        {
+          title: "Option 01 - From Mirissa",
+          activities: [
+            "Whale Watching (Seasonal)",
+            "Coconut Tree Hill",
+            "Turtle Conservation Center",
+            "Colombo City Tour",
+          ],
+        },
+        {
+          title: "Option 02 - From Hikkaduwa",
+          activities: [
+            "Galle Dutch Fort",
+            "Japanese Peace Pagoda",
+            "Hikkaduwa Beach",
+            "Madu River Safari",
+            "Colombo City Tour",
+          ],
+        },
+      ],
+      drop: "Drop at Airport or Hotel in Colombo",
+    },
+  ],
+},
+{
+  id: "05-days-east-coast",
+  region: "east",
+  hotelsIncluded: false,
+  title: "05 Days East Coast Tour",
+  duration: 5,
+  maxPeople: 10,
+  minAge: 16,
+  price: 340.0,
+  image: "/tours/05-days-east-coast-tour.jpg",
+
+  overview:
+    "This 5 days East Coast tour covers Kandy, Habarana, Polonnaruwa, Pasikuda, Trincomalee and Negombo. Experience cultural heritage, ancient cities, wildlife safari and relaxing east coast beaches with a professional English speaking driver guide.",
+
+  vehicleInfo: {
+    car: "1 - 3 Persons → Car",
+    van: "4 - 10 Persons → KDH Van",
+    minimum: "Minimum two persons are required",
+    vipNote:
+      "$680 for Two Persons - VIP Luxury Car (with Driver & Guiding)",
+  },
+
+  bookingOptions: [
+    "Fill out the booking form",
+    "Send an email to info@srilankatoursdriver.com",
+    "Send WhatsApp message to (+94) 769 300 334",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Driver's Accommodation & Meals",
+    "Fuel",
+    "Parking Fees",
+    "24 Hours Service",
+    "Local Sim Card (Free Data)",
+    "Water Bottles",
+    "Freeway Tickets (Toll Road)",
+  ],
+
+  excluded: [
+    "Your Accommodation & Meals",
+    "Entrance & Activities Fees",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Colombo / Negombo to Kandy",
+      image: "/tours/kandy.jpg",
+      activities: [
+        "Pickup from Airport or Hotel",
+        "Pinnawala Elephant Orphanage",
+        "Kandy Lake Walk",
+        "Kandy Cultural Show",
+        "Temple of the Sacred Tooth Relic",
+      ],
+      overnight: "Overnight stay at Kandy",
+    },
+
+    {
+      days: [2],
+      title: "Day 02 - Kandy to Habarana",
+      image: "/tours/habarana.jpg",
+      activities: [
+        "Matale Hindu Temple",
+        "Dambulla Cave Temple",
+        "Dambulla Vegetable Market",
+        "Village Tour with Cooking Class & Lunch",
+        "Eco Park Safari OR Pidurangala Sunset",
+      ],
+      overnight: "Overnight stay at Habarana",
+    },
+
+    {
+      days: [3],
+      title: "Day 03 - Habarana to Pasikuda",
+      image: "/tours/pasikuda.jpg",
+      activities: [
+        "Sigiriya Rock Fortress",
+        "Polonnaruwa Ancient Kingdom",
+        "Pasikuda Beach (Kalkudah Beach)",
+      ],
+      overnight: "Overnight stay at Pasikuda",
+    },
+
+    {
+      days: [4],
+      title: "Day 04 - Pasikuda to Trincomalee",
+      image: "/tours/trincomalee.jpg",
+      activities: [
+        "Marble Beach",
+        "Koneswaram Temple",
+        "Fort Frederick",
+        "Pigeon Island National Park",
+        "Nilaveli Beach",
+      ],
+      overnight: "Overnight stay at Trincomalee",
+    },
+
+    {
+      days: [5],
+      title: "Day 05 - Trincomalee to Negombo / Colombo",
+      image: "/tours/negombo.jpg",
+      activities: [
+        "Negombo Lagoon Tour OR Colombo City Tour",
+      ],
+      drop: "Drop at Bandaranaike International Airport or Hotel",
+    },
+  ],
+},
+{
+  id: "05-days-east-coast-hotels",
+  region: "east",
+  hotelsIncluded: true,
+  title: "05 Days East Coast Tour with Hotels",
+  duration: 5,
+  maxPeople: 2,
+  minAge: 16,
+  price: 400.0,
+  image: "/tours/05-days-east-coast-tour-with-hotels.jpg",
+
+  overview:
+    "This 5 days East Coast tour with hotels covers Kandy, Habarana, Polonnaruwa, Pasikuda, Trincomalee and Negombo. The package includes selected hotel accommodations with breakfast, private vehicle and professional English speaking driver guide.",
+
+  vehicleInfo: {
+    car: "1 - 3 Persons → Car",
+    van: "4 - 10 Persons → KDH Van",
+    minimum: "Minimum two persons are required",
+    vipNote:
+      "$800 for Two Persons - VIP Luxury Car (with Driver & Guiding) & Star Hotel with Breakfast",
+  },
+
+  bookingOptions: [
+    "Fill out the booking form",
+    "Send an email to info@srilankatoursdriver.com",
+    "Send WhatsApp message to (+94) 769 300 334",
+  ],
+
+  included: [
+    "Air-Conditioned Private Vehicle",
+    "English Speaking Professional Driver",
+    "Your Accommodation with Breakfast",
+    "Driver's Accommodation & Meals",
+    "Fuel",
+    "Parking Fees",
+    "24 Hours Service",
+    "Local Sim Card (Free Data)",
+    "Free Water Bottles",
+    "Freeway Tickets (Toll Road)",
+  ],
+
+  excluded: [
+    "Entrance & Activities Fees",
+  ],
+
+  itinerary: [
+    {
+      days: [1],
+      title: "Day 01 - Colombo / Negombo to Kandy",
+      image: "/tours/kandy.jpg",
+      activities: [
+        "Pickup from Airport or Hotel",
+        "Pinnawala Elephant Orphanage",
+        "Kandy Lake Walk",
+        "Kandy Cultural Show",
+        "Temple of the Sacred Tooth Relic",
+      ],
+      overnight: "Overnight stay at Jack Tree Lodge - Kandy",
+    },
+
+    {
+      days: [2],
+      title: "Day 02 - Kandy to Habarana",
+      image: "/tours/habarana.jpg",
+      activities: [
+        "Matale Hindu Temple",
+        "Dambulla Cave Temple",
+        "Dambulla Vegetable Market",
+        "Village Tour with Cooking Class & Lunch",
+        "Eco Park Safari OR Pidurangala Sunset",
+      ],
+      overnight: "Overnight stay at Go Go Green - Habarana",
+    },
+
+    {
+      days: [3],
+      title: "Day 03 - Habarana to Pasikuda",
+      image: "/tours/pasikuda.jpg",
+      activities: [
+        "Sigiriya Rock Fortress",
+        "Polonnaruwa Ancient Kingdom",
+        "Pasikuda Beach (Kalkudah Beach)",
+      ],
+      overnight: "Overnight stay at Pasikuda",
+    },
+
+    {
+      days: [4],
+      title: "Day 04 - Pasikuda to Trincomalee",
+      image: "/tours/trincomalee.jpg",
+      activities: [
+        "Marble Beach",
+        "Koneswaram Temple",
+        "Fort Frederick",
+        "Pigeon Island National Park",
+        "Nilaveli Beach",
+      ],
+      overnight: "Overnight stay at Trincomalee",
+    },
+
+    {
+      days: [5],
+      title: "Day 05 - Trincomalee to Negombo / Colombo",
+      image: "/tours/negombo.jpg",
+      activities: [
+        "Negombo Lagoon Tour OR Colombo City Tour",
+      ],
+      drop:
+        "Drop at Bandaranaike International Airport or Hotel at Negombo / Colombo",
+    },
+  ],
+},
 /* =====================================================
    8 DAYS TOURS
 ===================================================== */

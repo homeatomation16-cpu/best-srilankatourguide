@@ -93,7 +93,7 @@ export default function Navbar() {
           <a
             href="tel:+94769300334"
             className="
-              bg-linear-to-rrom-amber-500 via-yellow-400 to-amber-500
+              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
               text-black
               px-8 py-3
               rounded-full

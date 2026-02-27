@@ -5,6 +5,7 @@ export const destinations = [
     car: 42000,
     van: 50000,
     bus: 65000,
+    
     estimatedDuration: "4 Hours (Toll Road)",
     mileageKm: 290,
   },

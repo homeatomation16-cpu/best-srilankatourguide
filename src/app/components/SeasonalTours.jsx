@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,13 +7,15 @@ import { motion } from "framer-motion";
 import { TOURS } from "../../data/tours";
 
 /* ================= VARIANTS ================= */
-
 const reveal = {
   hidden: { opacity: 0, y: 60 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
@@ -25,8 +26,7 @@ export default function SeasonalTours() {
   const seasonalTours = TOURS.filter(
     (t) =>
       t.duration !== "1 Day" &&
-      (t.title?.toLowerCase().includes("east") ||
-        t.category === "Beach")
+      (t.title?.toLowerCase().includes("east") || t.category === "Beach")
   );
 
   /* ===== AUTO SCROLL ===== */
@@ -35,11 +35,7 @@ export default function SeasonalTours() {
     if (!container) return;
 
     const interval = setInterval(() => {
-      container.scrollBy({
-        left: 380,
-        behavior: "smooth",
-      });
-
+      container.scrollBy({ left: 380, behavior: "smooth" });
       if (
         container.scrollLeft + container.clientWidth >=
         container.scrollWidth - 5
@@ -52,107 +48,294 @@ export default function SeasonalTours() {
   }, []);
 
   return (
-    <section className="py-28 px-6 bg-linear-to-b from-white via-orange-50 to-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="seasonal-section">
+      {/* ================= HEADER ================= */}
+      <motion.div
+        className="section-header"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <span className="label-tag">Elite Seasonal Collection</span>
+        <h2 className="section-title">Seasonal Luxury Experiences</h2>
+        <p className="section-subtitle">
+          Crafted around Sri Lanka's finest travel seasons — delivering cinematic
+          coastlines, elegance, and unforgettable moments.
+        </p>
+      </motion.div>
 
-        {/* ================= HEADER ================= */}
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <p className="text-orange-600 text-xl mb-4 tracking-wide">
-            Elite Seasonal Collection
-          </p>
-
-          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            Seasonal Luxury Experiences
-          </h2>
-
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
-            Crafted around Sri Lanka’s finest travel seasons —
-            delivering cinematic coastlines, elegance,
-            and unforgettable moments.
-          </p>
-        </motion.div>
-
-        {/* ================= AUTO CAROUSEL ================= */}
-        <div
-          ref={scrollRef}
-          className="flex gap-10 overflow-x-auto pb-6"
-        >
+      {/* ================= AUTO CAROUSEL ================= */}
+      <div className="carousel-wrapper">
+        <div className="carousel-track" ref={scrollRef}>
           {seasonalTours.map((tour) => (
-            <motion.div
-              key={tour.id}
-              variants={reveal}
-              initial="hidden"
-              whileInView="show"
-              whileHover={{ y: -12 }}
-              viewport={{ once: true }}
-              className="relative min-w-90 rounded-4xl overflow-hidden bg-white/60 backdrop-blur-2xl border border-white/40 shadow-2xl group transition-all duration-500"
-            >
+            <div className="tour-card" key={tour.id}>
               {/* Glow Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-linear-to-tr from-orange-500/20 via-transparent to-amber-400/20 blur-2xl"></div>
+              <div className="card-glow" />
 
               {/* IMAGE */}
-              <div className="relative h-80 overflow-hidden">
-                <motion.div
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 1 }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={tour.image}
-                    alt={tour.title}
-                    fill
-                    sizes="400px"
-                    className="object-cover"
-                  />
-                </motion.div>
-
+              <div className="card-image-wrap">
+                <Image
+                  src={tour.image}
+                  alt={tour.title}
+                  fill
+                  className="card-image"
+                />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
-
-                {/* PRICE */}
-                <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur px-6 py-2 rounded-full font-semibold shadow-lg">
-                  From ${tour.price}
-                </div>
+                <div className="card-overlay" />
               </div>
 
+              {/* PRICE */}
+              <div className="card-price">From ${tour.price}</div>
+
               {/* CONTENT */}
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 group-hover:text-orange-600 transition-colors duration-300">
-                  {tour.title}
-                </h3>
-
-                <div className="space-y-4 text-gray-700 mb-8">
-
-                  <div className="flex items-center gap-3">
-                    <Calendar className="w-5 h-5 text-orange-500" />
+              <div className="card-content">
+                <h3 className="card-title">{tour.title}</h3>
+                <div className="card-meta">
+                  <span className="meta-item">
+                    <Calendar size={14} />
                     {tour.duration}
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-orange-500" />
+                  </span>
+                  <span className="meta-item">
+                    <Users size={14} />
                     Up to {tour.capacity || 10} Guests
-                  </div>
-
+                  </span>
                 </div>
-
-                <Link
-                  href={`/tours/${tour.id}`}
-                  className="block w-full text-center py-4 rounded-full font-semibold text-white bg-linear-to-r from-orange-600 to-amber-500 transition hover:scale-[1.05] hover:shadow-2xl"
-                >
+                <Link href={`/tours/${tour.slug}`} className="card-cta">
                   Explore Luxury Tour
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
       </div>
+
+      <style jsx>{`
+        /* ===== SECTION ===== */
+        .seasonal-section {
+          width: 100%;
+          padding: 4rem 1rem 3rem;
+          background: #0a0a0a;
+          overflow: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .section-header {
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto 3rem;
+          padding: 0 1rem;
+        }
+
+        .label-tag {
+          display: inline-block;
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #c9a96e;
+          border: 1px solid rgba(201, 169, 110, 0.4);
+          padding: 0.3rem 0.9rem;
+          border-radius: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .section-title {
+          font-size: clamp(1.6rem, 5vw, 2.6rem);
+          font-weight: 700;
+          color: #fff;
+          line-height: 1.2;
+          margin: 0 0 1rem;
+        }
+
+        .section-subtitle {
+          font-size: clamp(0.85rem, 2.5vw, 1rem);
+          color: rgba(255, 255, 255, 0.55);
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        /* ===== CAROUSEL WRAPPER ===== */
+        .carousel-wrapper {
+          width: 100%;
+          /* allow cards to peek on mobile */
+          padding: 0 1rem;
+        }
+
+        .carousel-track {
+          display: flex;
+          gap: 1.25rem;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding-bottom: 1rem;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* ===== CARD ===== */
+        .tour-card {
+          position: relative;
+          flex: 0 0 calc(100% - 2rem); /* full width on mobile */
+          scroll-snap-align: start;
+          height: 420px;
+          border-radius: 1.25rem;
+          overflow: hidden;
+          cursor: pointer;
+          background: #111;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tour-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Tablet: show ~2 cards */
+        @media (min-width: 640px) {
+          .tour-card {
+            flex: 0 0 340px;
+          }
+        }
+
+        /* Desktop: standard card size */
+        @media (min-width: 1024px) {
+          .carousel-wrapper {
+            padding: 0 2rem;
+          }
+          .tour-card {
+            flex: 0 0 360px;
+            height: 460px;
+          }
+        }
+
+        /* ===== GLOW ===== */
+        .card-glow {
+          position: absolute;
+          inset: -20px;
+          background: radial-gradient(
+            ellipse at 50% 120%,
+            rgba(201, 169, 110, 0.15),
+            transparent 70%
+          );
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        /* ===== IMAGE ===== */
+        .card-image-wrap {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+
+        .card-image {
+          object-fit: cover;
+          transition: transform 0.6s ease;
+        }
+
+        .tour-card:hover .card-image {
+          transform: scale(1.05);
+        }
+
+        .card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.3) 55%,
+            transparent 100%
+          );
+          z-index: 2;
+        }
+
+        /* ===== PRICE BADGE ===== */
+        .card-price {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          z-index: 10;
+          background: rgba(201, 169, 110, 0.9);
+          color: #000;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          padding: 0.35rem 0.75rem;
+          border-radius: 2rem;
+          backdrop-filter: blur(6px);
+        }
+
+        /* ===== CARD CONTENT ===== */
+        .card-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 10;
+          padding: 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .card-title {
+          font-size: clamp(1rem, 3vw, 1.2rem);
+          font-weight: 700;
+          color: #fff;
+          line-height: 1.3;
+          margin: 0;
+        }
+
+        .card-meta {
+          display: flex;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+
+        .meta-item {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== CTA BUTTON ===== */
+        .card-cta {
+          display: inline-block;
+          width: fit-content;
+          background: linear-gradient(135deg, #c9a96e, #e8c98a);
+          color: #000;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          text-decoration: none;
+          padding: 0.6rem 1.25rem;
+          border-radius: 2rem;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-cta:hover {
+          opacity: 0.88;
+          transform: translateY(-1px);
+        }
+
+        /* ===== SMALL PHONES ===== */
+        @media (max-width: 380px) {
+          .tour-card {
+            height: 380px;
+          }
+          .card-content {
+            padding: 1rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

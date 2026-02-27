@@ -211,10 +211,10 @@ export default function ContactPage() {
             <p className="text-gray-400 text-sm leading-relaxed mb-8">
               For questions or queries, fill out the form below or email us at{" "}
               <a
-                href="mailto:info@srilankatoursdriver.com"
+                href="mailto:vidushankadusheera@gmail.com"
                 className="text-orange-500 hover:underline"
               >
-                info@srilankatoursdriver.com
+                vidushankadusheera@gmail.com
               </a>
             </p>
 
@@ -317,11 +317,11 @@ export default function ContactPage() {
                   href="tel:+94769300334"
                   className="text-2xl font-bold text-gray-900 hover:text-orange-500 transition-colors"
                 >
-                  (+94) 769 300 334
+                  (+94) 702062697
                 </a>
               </div>
               <a
-                href="https://wa.me/94769300334"
+                href="https://wa.me/94702062697"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-white font-semibold text-sm hover:brightness-110 transition shrink-0"
@@ -388,6 +388,13 @@ export default function ContactPage() {
           </div>
           <div className="relative flex flex-col sm:flex-row gap-4 shrink-0">
             <a
+              href="tel:+94702062697"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white text-orange-600 font-bold text-sm hover:scale-105 transition-transform shadow-lg"
+            >
+              <Phone className="w-4 h-4" />
+              (+94) 702062697
+            </a>
+            <a
               href="tel:+94769300334"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white text-orange-600 font-bold text-sm hover:scale-105 transition-transform shadow-lg"
             >
@@ -395,7 +402,7 @@ export default function ContactPage() {
               (+94) 769 300 334
             </a>
             <a
-              href="mailto:info@srilankatoursdriver.com"
+              href="mailto:vidushankadusheera@gmail.com"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-full border-2 border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition"
             >
               <Mail className="w-4 h-4" />

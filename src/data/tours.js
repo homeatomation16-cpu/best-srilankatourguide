@@ -1418,6 +1418,7 @@ export const TOURS = [
           "Walking City Tour in Nuwara Eliya",
         ],
         overnight: "Overnight stay at Lu Chalet – Nuwara Eliya",
+        Image: "/tours/kandy-one-day-tour.jpg",
       },
       {
         days: [5],

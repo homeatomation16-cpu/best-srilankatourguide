@@ -36,7 +36,7 @@ export default function Navbar() {
     { label: "Offers", href: "#offers" },
     { label: "Vehicles", href: "/vehicles" },
     { label: "Tailor Made", href: "/tailor-made-tours" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -159,7 +159,7 @@ export default function Navbar() {
               ))}
 
               <a
-                href="tel:+94769300334"
+                href="tel:+94702062697"
                 className="
                   inline-block
                   bg-linear-to-r from-amber-500 to-yellow-300

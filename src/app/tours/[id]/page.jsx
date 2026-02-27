@@ -38,7 +38,6 @@ function BookingForm({ tour }) {
     setStatus("sending");
 
     try {
-      // Send via EmailJS
       await emailjs.send(
         "service_9fflwkc",
         "template_4fclvxr",
@@ -50,10 +49,8 @@ function BookingForm({ tour }) {
         "_PDrKKzoflFb6YJUT"
       );
 
-      // Prepare WhatsApp message
       const message = `Booking Request\n\nTour: ${tour.title}\nName: ${form.name}\nPhone: ${form.phone || "Not provided"}\nDate: ${form.date || "Not specified"}\nTime: ${form.time || "Not specified"}\nNotes: ${form.notes || "None"}`;
 
-      // Open WhatsApp
       window.open(`https://wa.me/94769300334?text=${encodeURIComponent(message)}`, "_blank");
 
       setStatus("sent");
@@ -87,7 +84,6 @@ function BookingForm({ tour }) {
 
       {/* Form Fields */}
       <div className="px-8 pt-8 pb-6 space-y-5">
-        {/* Name */}
         <div>
           <label className={labelClass}>
             Full Name <span className="text-red-400">*</span>
@@ -100,7 +96,6 @@ function BookingForm({ tour }) {
           />
         </div>
 
-        {/* Email */}
         <div>
           <label className={labelClass}>
             Email Address <span className="text-red-400">*</span>
@@ -114,7 +109,6 @@ function BookingForm({ tour }) {
           />
         </div>
 
-        {/* Phone */}
         <div>
           <label className={labelClass}>WhatsApp Number</label>
           <div className="phone-input-dark">
@@ -129,7 +123,6 @@ function BookingForm({ tour }) {
           </div>
         </div>
 
-        {/* Date & Time */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Travel Date</label>
@@ -151,7 +144,6 @@ function BookingForm({ tour }) {
           </div>
         </div>
 
-        {/* Notes */}
         <div>
           <label className={labelClass}>Special Requests / Notes</label>
           <textarea
@@ -162,7 +154,6 @@ function BookingForm({ tour }) {
           />
         </div>
 
-        {/* Submit Button */}
         <button
           onClick={handleSubmit}
           disabled={status === "sending" || status === "sent"}
@@ -191,7 +182,6 @@ function BookingForm({ tour }) {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="flex items-center justify-between px-8 py-4 border-t border-white/5 text-[11px] bg-stone-950">
         <span className="text-white/40">Or contact us directly:</span>
         <a
@@ -371,6 +361,17 @@ export default function TourDetailsPage() {
                             {/* Options (branching days) */}
                             {day.options?.map((option, optIdx) => (
                               <div key={optIdx} className="mt-6 border-l-4 border-orange-600 pl-5 bg-stone-50/60 py-4 pr-4 rounded-r">
+                                {/* Option image */}
+                                {option.image && (
+                                  <div className="relative w-full h-52 mb-4 rounded-md overflow-hidden">
+                                    <Image
+                                      src={option.image}
+                                      alt={option.title}
+                                      fill
+                                      className="object-cover"
+                                    />
+                                  </div>
+                                )}
                                 <p className="text-sm font-medium uppercase tracking-wider text-orange-700 mb-3">
                                   {option.title}
                                 </p>
@@ -429,7 +430,6 @@ export default function TourDetailsPage() {
           </div>
         </div>
       </div>
-      
 
       {/* Similar Tours */}
       <div className="max-w-7xl mx-auto px-12 py-20 max-lg:px-8 max-sm:px-5 max-sm:py-12">
@@ -443,11 +443,11 @@ export default function TourDetailsPage() {
           ))}
         </div>
       </div>
-      
-      <TourGallery 
-  tourId={tour.id}
-  tourTitle={tour.title}
-/>
+
+      <TourGallery
+        tourId={tour.id}
+        tourTitle={tour.title}
+      />
     </div>
   );
 }

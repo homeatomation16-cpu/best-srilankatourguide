@@ -8,20 +8,28 @@ export default function DestinationsPage() {
   return (
     <main className="min-h-screen bg-[#faf7f2] ">
 
+
+
       {/* ================= HERO SECTION ================= */}
-      <header className="relative h-[30vh] md:h-[50vh] w-full overflow-hidden pt-0.5">
+      <header>
+      <div className="relative h-screen w-full overflow-hidden">
 
-        {/* Background Image */}
-        <Image
-          src="/cover.jpg"
-          alt="Sri Lanka Destinations"
-          fill
-          priority
-          className="object-fill absolute top-0 transition-transform duration-700 hover:scale-105"
-        />
+  <Image
+    src="/cover.jpg"
+    alt="Sri Lanka"
+    fill
+    priority
+    className="object-cover"
+  />
 
-        {/* Dark Luxury Overlay */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80" />
+  {/* Dark top overlay */}
+  <div className="absolute inset-0 bg-black/40" />
+
+  {/* Bottom fog gradient */}
+  <div className="absolute bottom-0 left-0 right-0 h-64 
+                  bg-linear-to-t from-white via-white/70 to-transparent" />
+
+</div>
 
         {/* Hero Content */}
         <div className="relative pt-36 flex h-full flex-col items-center justify-center px-4 text-center text-white">

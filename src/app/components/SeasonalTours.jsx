@@ -1,4 +1,5 @@
 "use client";
+
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,11 +45,16 @@ export default function SeasonalTours() {
     const interval = setInterval(() => {
       if (isUserScrolling) return;
 
-      container.scrollBy({ left: 320, behavior: "smooth" });
+      const card = container.querySelector("div");
+      if (!card) return;
+
+      const cardWidth = card.offsetWidth + 20; // gap-5 = 20px
+
+      container.scrollBy({ left: cardWidth, behavior: "smooth" });
 
       if (
         container.scrollLeft + container.clientWidth >=
-        container.scrollWidth - 5
+        container.scrollWidth - cardWidth
       ) {
         container.scrollTo({ left: 0, behavior: "smooth" });
       }
@@ -63,6 +69,7 @@ export default function SeasonalTours() {
 
   return (
     <section className="w-full bg-white py-16 overflow-hidden">
+
       {/* ===== HEADER ===== */}
       <motion.div
         className="text-center max-w-2xl mx-auto px-6 mb-14"
@@ -89,19 +96,19 @@ export default function SeasonalTours() {
       <div className="overflow-hidden">
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-center px-6 x-scollbar-hide"
+          className="flex gap-5 overflow-x-auto snap-x snap-center px-6 scrollbar-hide"
         >
           {seasonalTours.map((tour) => (
             <div
               key={tour.id}
-              className="relative snap-center shrink-0 w-[78%] max-w-[320px] sm:w-75 lg:w-90 h-100 lg:h-115 rounded-2xl overflow-hidden bg-neutral-900"
+              className="relative snap-center shrink-0 w-[78%] max-w-[320px] h-105 rounded-2xl overflow-hidden bg-neutral-900"
             >
               {/* IMAGE */}
               <Image
                 src={tour.image}
                 alt={tour.title}
                 fill
-                sizes="(max-width:768px) 78vw, 360px"
+                sizes="(max-width:768px) 78vw, 320px"
                 className="object-cover transition-transform duration-500 hover:scale-105"
               />
 

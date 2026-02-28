@@ -27,7 +27,7 @@ export default function TailorMade() {
             <div className="absolute -top-5 -left-5 w-52 h-52 border border-amber-300/60 rounded-3xl pointer-events-none" />
             <div className="absolute -bottom-5 -right-5 w-36 h-36 border border-orange-300/40 rounded-2xl pointer-events-none" />
 
-            <div className="relative w-full h-160 rounded-3xl overflow-hidden group shadow-2xl shadow-amber-900/10">
+            <div className="relative w-full h-100 border border-amber-300 rounded-3xl overflow-hidden group shadow-2xl shadow-amber-900/10">
               <Image
                 src="/tailor-made-sri-lanka.jpg"
                 alt="Tailor Made Tours Sri Lanka"
@@ -64,7 +64,7 @@ export default function TailorMade() {
             </div>
 
             {/* Floating badge */}
-            <div className="absolute -right-5 top-12 bg-amber-500 text-white rounded-2xl px-5 py-4 shadow-xl shadow-amber-400/30">
+            <div className="absolute -right-5 top-1/2 transform -translate-y-1/2 bg-amber-500 text-white rounded-2xl px-5 py-4 shadow-xl shadow-amber-400/30">
               <p className="text-2xl font-bold leading-none">15+</p>
               <p className="text-xs font-semibold uppercase tracking-wider mt-1 opacity-80">
                 Years Expert

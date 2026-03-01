@@ -79,7 +79,7 @@ export default function VehiclesSection() {
       <div className="pointer-events-none absolute top-0 right-0 w-96 h-96 bg-amber-100 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2" />
       <div className="pointer-events-none absolute bottom-0 left-0 w-72 h-72 bg-orange-100 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2" />
 
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="w-full mx-auto px-6 relative">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">

@@ -8,8 +8,8 @@ export default function Loader() {
     <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-md flex items-center justify-center overflow-hidden">
 
       {/* Soft color blobs */}
-      <div className="absolute w-96 h-96 bg-sky-400/20 blur-3xl rounded-full -top-20 -left-20" />
-      <div className="absolute w-96 h-96 bg-emerald-400/20 blur-3xl rounded-full bottom-0 right-0" />
+      <div className="absolute w-96 h-96 bg-blue-50 blur-3xl rounded-full -top-20 -left-20" />
+      <div className="absolute w-96 h-96 bg-green-50 blur-3xl rounded-full bottom-0 right-0" />
 
       
       {/* <motion.div
@@ -47,7 +47,7 @@ export default function Loader() {
           />
 
           {/* Glass circle */}
-          <div className="absolute inset-3 rounded-full bg-white/30 backdrop-blur-xl shadow-lg" />
+          <div className="absolute inset-3 rounded-full bg-white/70 backdrop-blur-xl shadow-lg" />
 
           {/* Static Logo */}
           <Image
@@ -75,7 +75,7 @@ export default function Loader() {
         </motion.p>
 
         {/* Progress bar */}
-        <div className="w-56 h-2 bg-white/30 rounded-full mt-6 overflow-hidden mx-auto">
+        <div className="w-56 h-2 bg-white rounded-full mt-6 overflow-hidden mx-auto">
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: "100%" }}

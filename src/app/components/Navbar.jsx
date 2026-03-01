@@ -49,23 +49,25 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex  items-center gap-2">
           <Image
             src="/logo.png"
             alt="Sri Lanka Tours"
-            width={60}
-            height={60}
+            width={80}
+            height={80}
             priority
-            className="rounded-full border border-amber-400/40"
+            className="rounded-full p-1 bg-blue-50 border-2 border-amber-400/40"
           />
 
           <div className="hidden sm:block leading-tight">
-            <p className="font-bold text-amber-400 text-xs tracking-wide">
-              Sri Lanka Tours
+            <p className="font-bold text-amber-400 text-[14px] tracking-wide">
+              Sri Lanka  Best Tours 
+              <p className="font-bold text-amber-400 text-[14px] tracking-wide"> Driver and Guide</p>
             </p>
+            
             <p className="text-xs text-white/70 tracking-widest uppercase">
               Luxury Experience
             </p>
@@ -78,7 +80,7 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className={`group relative text-xs font-semibold tracking-wide transition ${
+              className={`group relative text-[14px]  font-semibold tracking-wide transition ${
                 scrolled ? "text-white" : "text-white"
               }`}
             >

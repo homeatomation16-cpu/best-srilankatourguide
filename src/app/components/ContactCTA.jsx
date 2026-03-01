@@ -22,7 +22,7 @@ export default function ContactCTA() {
 
           {/* PHONE */}
           <a
-            href="tel:+94769300334"
+            href="tel:+94702062697"
             className="group bg-white/15 backdrop-blur-xl border border-white/30 
                        p-8 rounded-2xl flex items-center justify-center gap-4
                        hover:bg-white hover:text-black transition-all duration-300
@@ -30,7 +30,7 @@ export default function ContactCTA() {
           >
             <Phone className="w-6 h-6 group-hover:text-orange-600" />
             <span className="text-lg font-semibold">
-              (+94) 769 300 334
+              (+94) 702062697
             </span>
           </a>
 

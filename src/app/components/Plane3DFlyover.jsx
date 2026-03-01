@@ -23,14 +23,14 @@ export default function PlaneFlyover() {
       45,
       window.innerWidth / window.innerHeight,
       0.1,
-      2000
+      2000,
     );
     camera.position.set(0, 0, 6);
 
     // ===== RENDERER =====
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true
+      alpha: true,
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -68,7 +68,7 @@ export default function PlaneFlyover() {
       });
 
       plane.scale.set(0.8, 0.8, 0.8);
-      plane.position.set(1, -1, 0);
+      plane.position.set(-3, -1, 0);
 
       scene.add(plane);
 
@@ -78,22 +78,51 @@ export default function PlaneFlyover() {
 
     // ===== SCROLL ANIMATION =====
     function createScrollAnimation() {
-      gsap.timeline({
-  scrollTrigger: {
-    trigger: document.body,
-    scrub: true,
-    start: "top top",
-    end: "bottom bottom"
-  },
-  onUpdate: render
-})
-.to(plane.position, { x: -3, y: 0.5, duration: 1 })
-.to(plane.rotation, { z: -0.3, duration: 1 }, "<") // slight bank
-.to(plane.position, { x: 0, y: 1, duration: 1 })
-.to(plane.rotation, { z: 0.3, duration: 1 }, "<")
-.to(plane.position, { x: 3, y: -0.5, duration: 1 })
-.to(plane.rotation, { z: 0, duration: 1 }, "<");
+
+  // ✈️ Create smooth curved path
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-1, 2, 0),
+    new THREE.Vector3(0, 0, 1),
+    new THREE.Vector3(1, 0, 0),
+    new THREE.Vector3(-2, 1, -2),
+    new THREE.Vector3(-4, 2, -5),
+    new THREE.Vector3(0, 0, -8),
+    // new THREE.Vector3(-4, 2, -5),
+    // new THREE.Vector3(-2, 1, -3),
+    // new THREE.Vector3(-1, 0, -1),
+    // new THREE.Vector3(-1, 0, 0),
+    // new THREE.Vector3(-1, 0, -2),
+  ]);
+
+  const progress = { t: 0 };
+
+  gsap.to(progress, {
+    t: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: document.body,
+      scrub: true,
+      start: "top top",
+      end: "bottom bottom"
+    },
+    onUpdate: () => {
+
+      // 📍 Position along curve
+      const point = curve.getPoint(progress.t);
+      plane.position.copy(point);
+
+      // 🎯 Look forward direction
+      const tangent = curve.getTangent(progress.t).normalize();
+      const axis = new THREE.Vector3(0, 1, 0);
+      const radians = Math.atan2(tangent.x, tangent.z);
+
+      plane.rotation.y = radians;
+      plane.rotation.x = -tangent.y * 0.5; // slight tilt
+
+      render();
     }
+  });
+}
 
     function render() {
       renderer.render(scene, camera);

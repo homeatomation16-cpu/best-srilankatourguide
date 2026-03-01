@@ -75,15 +75,20 @@ export const vehicles = [
     fuel: "Hybrid",
     transmission: "Auto",
 
-    image: "/images/1-1.jpeg",
+    image: "/toyota-prius/toyota-prius-1.jpeg",
 
     gallery: [
-      "/images/1-1.jpeg",
-      "/images/1-2.jpeg",
-      "/images/1-3.jpeg",
-      "/images/1-4.jpeg",
+      "/toyota-prius/toyota-prius-1.jpg",,
+      "/toyota-prius/toyota-prius-2.jpg",
+      "/toyota-prius/toyota-prius-3.jpg",
+      "/toyota-prius/toyota-prius-4.jpg",
+      "/toyota-prius/toyota-prius-5.jpg",
+      "/toyota-prius/toyota-prius-6.jpg",
+      "/toyota-prius/toyota-prius-7.jpg",
+      "/toyota-prius/toyota-prius-8.jpg",
+      "/toyota-prius/toyota-prius-9.jpg",
+      "/toyota-prius/toyota-prius-10.jpg",
     ],
-
     features: [
       "Eco friendly hybrid",
       "Smooth driving",

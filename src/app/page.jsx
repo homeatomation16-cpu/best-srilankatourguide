@@ -20,7 +20,7 @@ export default function SriLankaToursDriver() {
     <div className="relative bg-white">
 
       {/* ✈️ Flying Plane */}
-      <Plane3DFlyover />
+      {/* <Plane3DFlyover /> */}
 
       {/* HERO SECTION */}
       <div className="relative">

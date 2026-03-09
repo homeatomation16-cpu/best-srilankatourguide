@@ -75,7 +75,7 @@ export const vehicles = [
     fuel: "Hybrid",
     transmission: "Auto",
 
-    image: "/toyota-prius/toyota-prius-1.jpeg",
+    image: "/toyota-prius/toyota-prius-10.jpg",
 
     gallery: [
       "/toyota-prius/toyota-prius-1.jpg",,

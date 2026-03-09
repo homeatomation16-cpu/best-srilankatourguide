@@ -30,13 +30,13 @@ export default function FeatureTours() {
     return TOURS.filter(
       (tour) =>
         tour.duration === 1 ||
-        tour.duration === "1 Day" ||
+        tour.duration === "12 Day" ||
         tour.duration === "Full Day"
     );
   }, []);
 
   return (
-    <section className="relative py-20 lg:py-32 px-6 bg-white overflow-hidden">
+    <section className="relative py-16py-100 lg:py-32 px-6 bg-white overflow-hidden">
 
       {/* Background Blobs */}
       <div className="pointer-events-none absolute top-0 right-0 w-96 h-96 bg-orange-50 rounded-full blur-[120px] opacity-70" />
@@ -152,7 +152,7 @@ export default function FeatureTours() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-gray-100 pt-12"
+          className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-gray-100 pt-8"
         >
           <p className="text-gray-400 text-xs sm:text-sm max-w-sm text-center sm:text-left leading-relaxed">
             Every tour can be tailored to your itinerary, group size, and pace.

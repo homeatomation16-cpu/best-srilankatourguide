@@ -50,7 +50,6 @@ export default function Navbar() {
       }`}
     >
       <div className="w-full mx-auto px-6 py-4 flex items-center justify-between">
-
         {/* LOGO */}
         <Link href="/" className="flex  items-center gap-2">
           <Image
@@ -63,14 +62,21 @@ export default function Navbar() {
           />
 
           <div className="hidden sm:block leading-tight">
-            <p className="font-bold text-amber-400 text-[14px] tracking-wide">
-              Sri Lanka  Best Tours 
-              <p className="font-bold text-amber-400 text-[14px] tracking-wide"> Driver and Guide</p>
-            </p>
-            
+            <div className="font-bold text-amber-400 text-[14px] tracking-wide">
+              <p>Sri Lanka Best Tours</p>
+              <p>Driver and Guide</p>
+            </div>
+
             <p className="text-xs text-white/70 tracking-widest uppercase">
               Luxury Experience
             </p>
+          </div>
+
+          <div className="lg:hidden">
+            <div className="font-bold text-amber-400 text-[14px] tracking-wide">
+              <p>Sri Lanka Best Tours</p>
+              <p>Driver and Guide</p>
+            </div>
           </div>
         </Link>
 
@@ -92,7 +98,28 @@ export default function Navbar() {
           ))}
 
           {/* CALL CTA */}
+          {/*whatsapp link */}
           <a
+            href="https://wa.me/94769300334"
+            className="
+              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
+              text-black
+              px-8 py-3
+              rounded-full
+              font-semibold
+              tracking-wide
+              shadow-lg
+              hover:scale-105
+              hover:shadow-amber-400/40
+              transition
+              flex items-center gap-2
+            "
+          >
+            WhatsApp
+            <PhoneIcon size={16} />
+          </a>
+
+          {/* <a
             href="tel:+94769300334"
             className="
               bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
@@ -110,7 +137,7 @@ export default function Navbar() {
           >
             Call
             <PhoneIcon size={16} />
-          </a>
+          </a> */}
         </div>
 
         {/* MOBILE TOGGLE */}

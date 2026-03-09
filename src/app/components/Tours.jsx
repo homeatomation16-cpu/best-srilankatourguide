@@ -5,14 +5,14 @@ import { TOURS } from "../../data/tours"; // adjust path if needed
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SeasonalTours() {
+export default function Tours() {
 
   const downSouthTours = useMemo(() => {
     return TOURS.filter((tour) =>
       [
-        "05-days-east-coast",
-        "08-days-east-coast",
-        "10-days-east-coast"
+        "05-days-down-south",
+        "08-days-down-south",
+        "10-days-down-south",
       ].includes(tour.id)
     );
   }, []);
@@ -28,13 +28,13 @@ export default function SeasonalTours() {
 
         {/* Section Header */}
         <div className="text-center gap-0.5 mb-14">
-            <h1 className="text-amber-900 font-thea text-4xl py-2">Don’t miss</h1>
-            <h1 className="font-poppins text-5xl py-4">Seasonal Packages</h1>
-            <h2 className="font-bold text-4xl text-orange-500 py-5">(May to September)</h2>
+            <h1 className="text-amber-900 font-thea text-4xl py-2">Recommended </h1>
+            <h1 className="font-poppins text-5xl py-4">Featured Tour Packages</h1>
+            <h2 className="font-bold text-4xl text-orange-500 py-5">(November to April)</h2>
             <p>
-Explore our exclusive seasonal packages designed to match the best times to visit Sri Lanka. From sun-kissed beaches to lush hill country escapes, each package is tailored to offer unforgettable experiences during the ideal season.
+The best time to visit Sri Lanka’s South Coast is between November and mid-May, offering perfect weather and calm seas for swimmable beaches. These months provide ideal conditions for relaxation and exploration.
 
-Discover Sri Lanka’s beauty all year round with curated tours for every traveler!</p>
+However, Sri Lanka is a year-round destination, with its diverse climate ensuring amazing experiences no matter when you visit!</p>
           <p className="text-sm uppercase tracking-[0.3em] text-orange-500 font-semibold">
             Discover Sri Lanka
           </p>
@@ -82,7 +82,6 @@ Discover Sri Lanka’s beauty all year round with curated tours for every travel
                     View Details →
                   </span>
                 </div>
-                
               </div>
             </Link>
           ))}
@@ -98,9 +97,6 @@ Discover Sri Lanka’s beauty all year round with curated tours for every travel
             View All Tours
           </Link>
         </div>
-        <div className="pt-4 text-center">Need to customize the plan for your next trip in Sri Lanka? Contact us now!
-                   <Link href="/contact"> Contact us now! </Link>
-                </div>
 
       </div>
     </section>

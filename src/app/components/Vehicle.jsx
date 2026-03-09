@@ -4,189 +4,142 @@ import Image from "next/image";
 import Link from "next/link";
 import { Users, Fuel, Settings, ArrowRight } from "lucide-react";
 import { vehicles } from "../../data/vehicles";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function VehiclesSection() {
-  const scrollRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const languageDrivers = [
+    "English Speaking",
+    "French Speaking",
+    "German Speaking",
+    "Hindi Speaking",
+    "Spanish Speaking",
+    "Italian Speaking",
+  ];
+
   const featured = vehicles.slice(0, 6);
 
-  /* ───────────────── Auto Scroll ───────────────── */
+  const [currentLang, setCurrentLang] = useState(0);
+
+  /* ───────────────── Language Auto Change ───────────────── */
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const gap = 24;
-
-    const getCardWidth = () => {
-      const card = el.querySelector("a");
-      return card ? card.offsetWidth + gap : 0;
-    };
-
     const interval = setInterval(() => {
-      const cardWidth = getCardWidth();
-      if (!cardWidth) return;
-
-      const nextIndex =
-        activeIndex === featured.length - 1 ? 0 : activeIndex + 1;
-
-      el.scrollTo({
-        left: nextIndex * cardWidth,
-        behavior: "smooth",
-      });
-
-      setActiveIndex(nextIndex);
-    }, 4000); // 4 seconds
+      setCurrentLang((prev) =>
+        prev === languageDrivers.length - 1 ? 0 : prev + 1
+      );
+    }, 2500);
 
     return () => clearInterval(interval);
-  }, [activeIndex, featured.length]);
-
-  /* ───────────────── Manual Scroll Tracking ───────────────── */
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const onScroll = () => {
-      const card = el.querySelector("a");
-      if (!card) return;
-      const gap = 24;
-      const cardWidth = card.offsetWidth + gap;
-      setActiveIndex(Math.round(el.scrollLeft / cardWidth));
-    };
-
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollTo = (i) => {
-    const el = scrollRef.current;
-    const card = el?.querySelector("a");
-    if (!el || !card) return;
-
-    const gap = 24;
-    const cardWidth = card.offsetWidth + gap;
-
-    el.scrollTo({
-      left: i * cardWidth,
-      behavior: "smooth",
-    });
-  };
+  }, [languageDrivers.length]);
 
   return (
-    <section className="relative py-24 overflow-hidden bg-white">
-
-      {/* Decorative Background */}
+    <section className="py-24 bg-linear-to-b from-white to-orange-50 relative overflow-hidden">
+      
+      {/* Decorative Blobs */}
       <div className="pointer-events-none absolute top-0 right-0 w-96 h-96 bg-amber-100 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2" />
       <div className="pointer-events-none absolute bottom-0 left-0 w-72 h-72 bg-orange-100 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2" />
 
-      <div className="w-full mx-auto px-6 relative">
+      <div className="max-w-7xl mx-auto px-6 relative">
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
-          <div>
-            <p className="text-xs font-bold tracking-widest uppercase text-amber-600 mb-3">
-              Our Fleet
-            </p>
+        {/* ───────────────── Section Header ───────────────── */}
+        <div className="text-center mb-16">
+          <h1 className="text-amber-900 font-thea text-4xl py-2">
+            What’s new
+          </h1>
 
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight text-stone-800">
-              Travel in{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-amber-400">
-                Style
-              </span>
-            </h2>
+          <h2 className="font-poppins font-bold text-5xl py-4">
+            Recommended Drivers & Vehicles
+          </h2>
 
-            <p className="mt-4 text-sm text-stone-500 max-w-sm leading-relaxed">
-              Handpicked vehicles maintained to the highest standard.
-            </p>
-          </div>
+          <p className="max-w-3xl font-semibold text-xl mx-auto text-gray-600 leading-relaxed mt-6">
+            We provide professional drivers fluent in
+            <span
+              key={currentLang}
+              className="text-orange-500 font-semibold mx-2 transition-all duration-500"
+            >
+              {languageDrivers[currentLang]}
+            </span>
+            Travel with comfort and confidence with our recommended drivers and guides. Choose from a range of vehicle types to suit your journey, and enjoy the company of expert guides fluent in multiple languages, ensuring a seamless and enriching experience across Sri Lanka.
+          </p>
 
-          <Link
-            href="/vehicles"
-            className="inline-flex items-center gap-2 text-sm font-semibold border border-stone-300 rounded-full px-6 py-3 text-stone-600 hover:text-orange-600 hover:border-orange-400 bg-white shadow-sm hover:shadow-md transition-all duration-300 group whitespace-nowrap"
-          >
-            View All Vehicles
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </Link>
+          <div className="mt-6 h-1 w-24 bg-orange-500 mx-auto rounded-full" />
         </div>
 
-        {/* Horizontal Scroll */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-        >
+        {/* ───────────────── Vehicles Grid ───────────────── */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {featured.map((v) => (
             <Link
               key={v.id}
               href={`/vehicles/${v.id}`}
-              className="flex-none w-72 md:w-80 snap-start rounded-3xl overflow-hidden bg-white shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group"
+              className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-2"
             >
-              <div className="relative h-52 w-full overflow-hidden">
+              {/* Image */}
+              <div className="relative h-64 w-full overflow-hidden">
                 <Image
                   src={v.image || "/placeholder.jpg"}
                   alt={v.name || "Vehicle"}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover group-hover:scale-110 transition duration-700"
                 />
 
-                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
-
+                {/* Price Badge */}
                 {v.price && (
-                  <div className="absolute top-3 right-3 bg-white/95 text-orange-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                  <div className="absolute top-4 left-4 bg-orange-500 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md">
                     {v.price}/day
                   </div>
                 )}
 
-                <div className="absolute bottom-3 left-3 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                {/* Vehicle Type */}
+                <div className="absolute bottom-4 left-4 bg-white/90 text-orange-600 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                   {v.type || "Vehicle"}
                 </div>
               </div>
 
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-stone-800 mb-3">
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition">
                   {v.name}
                 </h3>
 
-                <div className="flex items-center gap-4 text-xs text-stone-500 mb-4">
+                <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
                   {v.passengers && (
                     <span className="flex items-center gap-1">
-                      <Users className="w-3.5 h-3.5 text-amber-500" />
+                      <Users className="w-4 h-4 text-orange-500" />
                       {v.passengers} pax
                     </span>
                   )}
+
                   <span className="flex items-center gap-1">
-                    <Settings className="w-3.5 h-3.5 text-amber-500" />
+                    <Settings className="w-4 h-4 text-orange-500" />
                     {v.transmission || "Auto"}
                   </span>
+
                   <span className="flex items-center gap-1">
-                    <Fuel className="w-3.5 h-3.5 text-amber-500" />
+                    <Fuel className="w-4 h-4 text-orange-500" />
                     {v.fuel || "Petrol"}
                   </span>
                 </div>
 
-                <div className="w-full text-center py-2.5 rounded-xl bg-linear-to-r from-orange-500 to-amber-400 text-white text-xs font-bold uppercase tracking-wider">
-                  Book Now
+                <div className="mt-6">
+                  <span className="inline-block bg-orange-100 text-orange-600 text-sm px-4 py-2 rounded-full font-medium group-hover:bg-orange-500 group-hover:text-white transition">
+                    View Details →
+                  </span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Dots */}
-        {featured.length > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-8">
-            {featured.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollTo(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === activeIndex
-                    ? "w-7 h-2 bg-orange-500"
-                    : "w-2 h-2 bg-stone-300 hover:bg-orange-300"
-                }`}
-              />
-            ))}
-          </div>
-        )}
+        {/* ───────────────── CTA Button ───────────────── */}
+        <div className="text-center mt-16">
+          <Link
+            href="/vehicles"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-white font-semibold rounded-full shadow-lg hover:bg-orange-600 transition"
+          >
+            View All Vehicles
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
       </div>
     </section>
   );

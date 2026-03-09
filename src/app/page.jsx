@@ -14,6 +14,7 @@ import Gallery from "./components/Gallery";
 import VehiclesSection from "./components/Vehicle";
 
 import Plane3DFlyover from "./components/Plane3DFlyover";
+import Tours from "./components/Tours";
 
 export default function SriLankaToursDriver() {
   return (
@@ -31,17 +32,26 @@ export default function SriLankaToursDriver() {
       </div>
 
       {/* CONTENT SECTIONS */}
-      <Destinations />
-      <FeaturedTours />
+      <Tours />
       <SeasonalTours />
-      <VehiclesSection />
-      <WhyUs />
       <OneDayTours />
+      <VehiclesSection />
+      
+      <WhyUs />
+      <Destinations />
+      
+      
+      
       <Testimonials />
+      {/*costomer reviews */}
       <SpecialOffer />
       <TailorMade />
       <Gallery />
       <ContactCTA />
+      {/* Language Switcher /> */}
+      {/* curruncy change */}
+
+      {/* Footer Follow Us */}
 
     </div>
   );

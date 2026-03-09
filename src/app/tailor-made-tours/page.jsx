@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import PhoneInput from "react-phone-number-input";
+import { WheatIcon } from "lucide-react";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 /* ---------- Config / Static Data ---------- */
 const initialForm = {
   travelStyle: "",
@@ -232,7 +235,35 @@ Duration: ${estimatedDays} days
   };
 
   return (
-    <div className="flex mt-18 flex-col bg-linear-to-b from-orange-50 via-amber-50 to-yellow-50 min-h-screen relative">
+    <div className="flex flex-col bg-amber-50 relative min-h-screen ">
+      <header className="relative h-[70vh] w-full overflow-hidden">
+        {/* Background Image */}
+        <Image 
+          src="/cover.jpg"
+          alt="Sri Lanka Excursions"
+          fill 
+          priority 
+          className="object-cover object-center" />
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* Bottom Fade */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40 
+                  bg-linear-to-t from-[#faf7f2] via-[#faf7f2]/70 to-transparent"
+        />
+
+        {/* Content */}
+        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
+          <h1 className="text-4xl md:text-6xl font-bold">
+            Design Your Dream
+            <span className="block text-[#d4a853] italic">
+              Sri Lanka Journey
+            </span>
+          </h1>
+        </div>
+      </header>
       {/* Animated blobs using framer-motion (no style jsx) */}
       <motion.div
         aria-hidden
@@ -619,7 +650,7 @@ Duration: ${estimatedDays} days
                           className="w-5 h-5 text-orange-500 rounded focus:ring-orange-500"
                         />
                         <span className="text-sm font-semibold">
-                          ✈️ Airport Transfer
+                          🚗 Airport Transfer
                         </span>
                       </label>
                     </div>
@@ -813,7 +844,6 @@ Duration: ${estimatedDays} days
                         </p>
                       )}
                     </div>
-
                     <div className="w-full sm:w-1/3">
                       <label
                         htmlFor="email"
@@ -836,27 +866,19 @@ Duration: ${estimatedDays} days
                       )}
                     </div>
 
-                    <div className="w-full sm:w-1/3">
-                      <label
-                        htmlFor="whatsapp"
-                        className="block text-sm font-bold text-gray-700 mb-3"
-                      >
-                        WhatsApp Number *
-                      </label>
-                      <input
-                        id="whatsapp"
-                        type="tel"
-                        value={form.whatsapp}
-                        onChange={(e) => setField("whatsapp", e.target.value)}
-                        placeholder="+94 XXX XXX XXX"
-                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                    <div className="rounded-xl border border-[#e8ddd0] bg-[#fdfaf6] px-3 py-2 focus-within:border-[#d4a853] focus-within:ring-2 focus-within:ring-[#d4a853]/20 transition">
+                      <PhoneInput
+                        defaultCountry="US"
+                        value={form.phone}
+                        onChange={(value) => handleChange("phone", value || "")}
+                        className="font-sans text-sm text-[#1a1209]"
                       />
-                      {errors.whatsapp && (
-                        <p className="text-sm text-red-600 mt-2">
-                          ⚠️ {errors.whatsapp}
-                        </p>
-                      )}
                     </div>
+                    {errors.phone && (
+                      <p className="text-sm text-red-600 mt-2">
+                        ⚠️ {errors.phone}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -886,10 +908,10 @@ Duration: ${estimatedDays} days
                     <div className="md:ml-auto text-sm text-gray-600">
                       <p className="font-semibold">Need help?</p>
                       <a
-                        href="tel:+94769300334"
+                        href="tel:+94702062697"
                         className="text-orange-600 hover:text-orange-700 font-bold"
                       >
-                        Call us: +94 769 300 334
+                        Call us: (+94) +94702062697
                       </a>
                     </div>
                   </div>
@@ -927,7 +949,7 @@ Duration: ${estimatedDays} days
                       href="tel:+94769300334"
                       className="text-orange-600 hover:text-orange-700"
                     >
-                      (+94) 769 300 334
+                      (+94) 702062697
                     </a>
                   </div>
                 </div>
@@ -983,10 +1005,10 @@ Duration: ${estimatedDays} days
               transition={{ delay: 0.4 }}
               className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-6"
             >
-              <h3 className="text-xl font-black text-gray-800 mb-4">
+              {/* <h3 className="text-xl font-black text-gray-800 mb-4">
                 🏝️ Popular Destinations
-              </h3>
-              <div className="space-y-2 text-sm">
+              </h3> */}
+              {/* <div className="space-y-2 text-sm">
                 {[
                   "Sigiriya Rock Fortress",
                   "Ella & Nine Arch Bridge",
@@ -1003,7 +1025,7 @@ Duration: ${estimatedDays} days
                     <span className="font-medium text-gray-700">{dest}</span>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </motion.div>
 
             <motion.div
@@ -1017,10 +1039,11 @@ Duration: ${estimatedDays} days
               </h3>
               <div className="flex gap-3">
                 <button className="flex-1 p-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                  <span className="font-bold text-xs">Facebook</span>
+                  <FaFacebook className="text-2xl" />
                 </button>
                 <button className="flex-1 p-3 bg-pink-500 text-white rounded-xl hover:bg-pink-600 transition transform hover:scale-105">
                   <span className="font-bold text-xs">Instagram</span>
+                  <FaInstagram className="text-2xl ml-1" />
                 </button>
                 <button className="flex-1 p-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition transform hover:scale-105">
                   <span className="font-bold text-xs">YouTube</span>
@@ -1055,26 +1078,7 @@ Duration: ${estimatedDays} days
                 us directly.
               </p>
               <div className="flex items-center justify-center gap-2 text-sm text-green-600">
-                <svg
-                  className="animate-spin h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                  ></path>
-                </svg>
+                <FaWhatsapp className="text-2xl" />
                 <span className="font-semibold">Opening WhatsApp...</span>
               </div>
             </motion.div>

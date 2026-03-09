@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Loader from "./Loader";
+import Link from "next/link";
 
 const SLIDE_DURATION = 8000;
 
@@ -142,7 +143,9 @@ export default function HeroVideo() {
           {slide.subtitle}
         </p>
 
-        <button style={{
+        <Link
+          href="/booking"
+         style={{
           marginTop: 24,
           padding: "14px 26px",
           borderRadius: 999,
@@ -151,7 +154,7 @@ export default function HeroVideo() {
           border: "none",
         }}>
           Book Now
-        </button>
+        </Link>
 
         <div style={{
           marginTop: 40,

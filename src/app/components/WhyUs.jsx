@@ -58,7 +58,7 @@ export default function WhyUs() {
           </p>
 
           <h2 className="text-4xl lg:text-6xl font-bold text-gray-900">
-            We Make Travel Effortless
+            We Make All The Process Easy
           </h2>
         </div>
 

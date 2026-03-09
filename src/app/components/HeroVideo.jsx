@@ -8,17 +8,17 @@ const SLIDE_DURATION = 8000;
 
 const SLIDES = [
   {
-    src: "https://pixabay.com/videos/download/video-286459_tiny.mp4",
+    src: "/hero/mirissa.mp4",
     title: "Mirissa Beach",
     subtitle: "Golden sunsets & whale watching paradise",
   },
   {
-    src: "https://pixabay.com/videos/download/video-191283_tiny.mp4",
+    src: "/hero/sigiriya.mp4",
     title: "Sigiriya Rock Fortress",
     subtitle: "Ancient wonder of Sri Lanka",
   },
   {
-    src: "https://pixabay.com/videos/download/video-191284_tiny.mp4",
+    src: "/hero/ella.mp4",
     title: "Ella Scenic Train",
     subtitle: "World’s most beautiful train ride",
   },

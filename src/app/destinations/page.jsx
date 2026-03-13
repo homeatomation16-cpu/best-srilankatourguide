@@ -7,7 +7,6 @@ import { DESTINATIONS } from "../../data/destinations";
 export default function DestinationsPage() {
 return ( <main className="min-h-screen bg-[#faf7f2]">
 
-```
   {/* ================= HERO SECTION ================= */}
   <header className="relative h-screen w-full overflow-hidden">
 

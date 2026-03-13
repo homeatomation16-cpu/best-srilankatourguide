@@ -73,7 +73,7 @@ The park is home to elephants, crocodiles, bears, deer, peacocks, and many migra
 
   {
     id: "st-marys-church-negombo",
-    title: "St. Mary’s Church – Negombo",
+    title: "St Marys Church Negombo",
     location: "Negombo",
     image: "/destinations/st-marys-church-negombo.jpeg",
     description: `St. Mary’s Church is one of the largest cathedrals in Sri Lanka, located in Negombo.

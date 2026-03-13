@@ -47,7 +47,7 @@ export default function SriLankaToursDriver() {
       <SpecialOffer />
       <TailorMade />
       <Gallery />
-      <ContactCTA />
+      
       {/* Language Switcher /> */}
       {/* curruncy change */}
 

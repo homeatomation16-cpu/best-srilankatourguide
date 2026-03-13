@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, PhoneIcon, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,30 +12,30 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    let lastY = window.scrollY;
+    let lastScroll = window.scrollY;
 
-    const onScroll = () => {
-      const currentY = window.scrollY;
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
 
-      setScrolled(currentY > 40);
-      setHidden(currentY > lastY && currentY > 120);
+      setScrolled(currentScroll > 40);
+      setHidden(currentScroll > lastScroll && currentScroll > 120);
 
-      lastY = currentY;
+      lastScroll = currentScroll;
     };
 
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "Tours", href: "/tours" },
-    { label: "Destinations", href: "/destinations" },
-    { label: "Excursions", href: "/excursions" },
-    { label: "Offers", href: "#offers" },
-    { label: "Vehicles", href: "/vehicles" },
-    { label: "Tailor Made", href: "/tailor-made-tours" },
-    { label: "Contact", href: "/contact" },
+  const menu = [
+    { name: "Home", link: "/" },
+    { name: "Tours", link: "/tours" },
+    { name: "Destinations", link: "/destinations" },
+    { name: "Excursions", link: "/excursions" },
+    { name: "Vehicles", link: "/vehicles" },
+    { name: "Tailor Made", link: "/tailor-made-tours" },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (
@@ -45,106 +45,82 @@ export default function Navbar() {
       transition={{ duration: 0.35 }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-black/60 backdrop-blur-xl shadow-lg border-b border-white/10"
+          ? "bg-black/60 backdrop-blur-xl border-b border-white/10 shadow-lg"
           : "bg-transparent"
       }`}
     >
-      <div className="w-full mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/" className="flex  items-center gap-2">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.png"
             alt="Sri Lanka Tours"
             width={80}
             height={80}
             priority
-            className="rounded-full p-1 bg-blue-50 border-2 border-amber-400/40"
+            className="rounded-full border bg-white border-amber-400/40"
           />
 
-          <div className="hidden sm:block leading-tight">
-            <div className="font-bold text-amber-400 text-[14px] tracking-wide">
-              <p>Sri Lanka Best Tours</p>
-              <p>Driver and Guide</p>
-            </div>
+          <div className="leading-tight">
+            <p className="text-amber-400 font-semibold text-sm tracking-wide">
+              Sri Lanka Best Tours
+            </p>
+            <p className="text-amber-400 font-semibold text-sm tracking-wide">
+              Driver & Guide
+            </p>
 
-            <p className="text-xs text-white/70 tracking-widest uppercase">
+            <p className="text-[10px] text-white/70 uppercase tracking-widest">
               Luxury Experience
             </p>
-          </div>
-
-          <div className="lg:hidden">
-            <div className="font-bold text-amber-400 text-[14px] tracking-wide">
-              <p>Sri Lanka Best Tours</p>
-              <p>Driver and Guide</p>
-            </div>
           </div>
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-8 xl:gap-14">
-          {menuItems.map((item) => (
+        <div className="hidden md:flex items-center gap-10">
+          {menu.map((item) => (
             <Link
-              key={item.label}
-              href={item.href}
-              className={`group relative text-[14px]  font-semibold tracking-wide transition ${
-                scrolled ? "text-white" : "text-white"
-              }`}
+              key={item.name}
+              href={item.link}
+              className="group relative text-white text-sm font-semibold tracking-wide"
             >
-              {item.label}
+              {item.name}
 
-              {/* Gold underline */}
-              <span className="absolute left-0 -bottom-2 w-0 h-px bg-linear-to-r from-amber-400 to-yellow-200 transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className="
+                absolute left-0 -bottom-2
+                w-0 h-px
+                bg-linear-to-r from-amber-400 to-yellow-200
+                transition-all duration-300
+                group-hover:w-full
+              "
+              ></span>
             </Link>
           ))}
 
-          {/* CALL CTA */}
-          {/*whatsapp link */}
+          {/* WHATSAPP BUTTON */}
           <a
-            href="https://wa.me/94769300334"
+            href="https://wa.me/94702062697"
             className="
-              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
-              text-black
-              px-8 py-3
-              rounded-full
-              font-semibold
-              tracking-wide
-              shadow-lg
-              hover:scale-105
-              hover:shadow-amber-400/40
-              transition
-              flex items-center gap-2
-            "
+            bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
+            text-black
+            px-6 py-2.5
+            rounded-full
+            font-semibold
+            flex items-center gap-2
+            hover:scale-105
+            transition
+            shadow-lg
+          "
           >
             WhatsApp
-            <PhoneIcon size={16} />
+            <Phone size={16} />
           </a>
-
-          {/* <a
-            href="tel:+94769300334"
-            className="
-              bg-linear-to-r from-amber-500 via-yellow-400 to-amber-500
-              text-black
-              px-8 py-3
-              rounded-full
-              font-semibold
-              tracking-wide
-              shadow-lg
-              hover:scale-105
-              hover:shadow-amber-400/40
-              transition
-              flex items-center gap-2
-            "
-          >
-            Call
-            <PhoneIcon size={16} />
-          </a> */}
         </div>
 
-        {/* MOBILE TOGGLE */}
+        {/* MOBILE BUTTON */}
         <button
-          onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-white"
-          aria-label="Toggle Menu"
+          onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -154,29 +130,29 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
+            exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden bg-black/90 backdrop-blur-2xl border-t border-amber-400/20"
+            className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10"
           >
-            <div className="px-6 py-10 space-y-8 text-center">
-              {menuItems.map((item) => (
+            <div className="flex flex-col items-center gap-8 py-10 text-lg">
+              {menu.map((item) => (
                 <Link
-                  key={item.label}
-                  href={item.href}
+                  key={item.name}
+                  href={item.link}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-lg text-white/90 tracking-wide hover:text-amber-400 transition"
+                  className="text-white/90 hover:text-amber-400 transition"
                 >
-                  {item.label}
+                  {item.name}
                 </Link>
               ))}
 
               <a
-                href="tel:+94769300334"
-                className="inline-block bg-linear-to-r from-amber-500 to-yellow-300 text-black px-8 py-3 rounded-full font-semibold"
+                href="tel:+94702062697"
+                className="bg-linear-to-r from-amber-500 to-yellow-300 text-black px-8 py-3 rounded-full font-semibold"
               >
-                Call
+                Call Now
               </a>
             </div>
           </motion.div>

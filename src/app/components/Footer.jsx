@@ -118,7 +118,7 @@ export default function Footer() {
         <div className="mb-14 rounded-3xl overflow-hidden border border-white/10 shadow-2xl hover:shadow-orange-500/30 transition">
           <iframe
             title="Sri Lanka Tours Driver Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d324.8100584573963!2d79.98698219065231!3d6.7733164338432745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae24e8ad679dc65%3A0x8c6883d5865d79f5!2sHirdaramani%20Pentex%20Apparel!5e1!3m2!1sen!2slk!4v1772089839242!5m2!1sen!2slk"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d266.4847488090501!2d79.98684840696005!3d6.7734220317821565!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae24f89fa74f12f%3A0xcd470ca323b64cd8!2sSri%20lanka%20Best%20Tours%20Driver%20and%20Guide!5e1!3m2!1sen!2slk!4v1773387915647!5m2!1sen!2slk"
             className="w-full h-80 grayscale hover:grayscale-0 transition duration-500"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
